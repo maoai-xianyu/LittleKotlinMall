@@ -21,5 +21,6 @@ why
 ### Mvp  view -- presenter - model
 
 ### 学习流程
-1. 建立BaseLibrary -- 存放基础库
-2. 建立Provider -- 存放公有属性
+1. 建立BaseLibrary -- 存放基础库，基础控件，工具类，父类
+2. 建立Provider -- 存放和业务相关的共用属性，事件，key值
+3. 建立UserCenter -- 用户模块

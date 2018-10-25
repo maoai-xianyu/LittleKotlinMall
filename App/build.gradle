@@ -28,6 +28,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation project(":Provider")
+    if(isUserModule.toBoolean()){
+        implementation project(":UserCenter")
+    }
 }
 repositories {
     mavenCentral()

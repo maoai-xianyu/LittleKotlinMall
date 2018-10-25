@@ -1,7 +1,14 @@
 package mall.kotlin.com.usercenter.presenter
 
+import mall.kotlin.com.baselibrary.ext.execute
 import mall.kotlin.com.baselibrary.presenter.BasePresenter
+import mall.kotlin.com.baselibrary.rx.BaseSubscriber
 import mall.kotlin.com.usercenter.presenter.view.RegisterView
+import mall.kotlin.com.usercenter.service.impl.UserServiceImpl
+import rx.Observable
+import rx.Subscriber
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 /**
  * author:  zhangkun .
@@ -10,11 +17,17 @@ import mall.kotlin.com.usercenter.presenter.view.RegisterView
 class RegisterPresenter : BasePresenter<RegisterView>() {
 
 
-    fun register(mobile: String, verifyCode: String) {
+    fun register(mobile: String, verifyCode: String, pwd: String) {
 
         /**
          * 业务逻辑
          */
-        mView.onRegisterResult(true)
+        val userService = UserServiceImpl()
+        userService.register(mobile, verifyCode, pwd)
+                .execute(object : BaseSubscriber<Boolean>() {
+                    override fun onNext(t: Boolean) {
+                        mView.onRegisterResult(t)
+                    }
+                })
     }
 }

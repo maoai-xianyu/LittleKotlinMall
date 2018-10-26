@@ -6,6 +6,8 @@ buildscript {
     //ext.rx_kotlin_version='2.0.0-RC1'
     ext.rx_kotlin_version='1.0.0'
     ext.rx_android_version='1.2.1'
+    ext.ok_http_version='3.11.0'
+    ext.retrofit_version='2.4.0'
 
     repositories {
         google()

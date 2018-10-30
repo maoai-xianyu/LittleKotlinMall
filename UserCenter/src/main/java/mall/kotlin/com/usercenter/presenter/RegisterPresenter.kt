@@ -5,10 +5,6 @@ import mall.kotlin.com.baselibrary.presenter.BasePresenter
 import mall.kotlin.com.baselibrary.rx.BaseSubscriber
 import mall.kotlin.com.usercenter.presenter.view.RegisterView
 import mall.kotlin.com.usercenter.service.impl.UserServiceImpl
-import rx.Observable
-import rx.Subscriber
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 
 /**
  * author:  zhangkun .

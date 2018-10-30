@@ -17,13 +17,13 @@ import rx.schedulers.Schedulers
 class RegisterPresenter : BasePresenter<RegisterView>() {
 
 
-    fun register(mobile: String, verifyCode: String, pwd: String) {
+    fun register(mobile: String, pwd: String,verifyCode: String) {
 
         /**
          * 业务逻辑
          */
         val userService = UserServiceImpl()
-        userService.register(mobile, verifyCode, pwd)
+        userService.register(mobile, pwd,verifyCode)
                 .execute(object : BaseSubscriber<Boolean>() {
                     override fun onNext(t: Boolean) {
                         mView.onRegisterResult(t)

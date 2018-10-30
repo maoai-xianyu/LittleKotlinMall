@@ -18,7 +18,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         mPresenter.mView = this
         // 传统意义的定义
         mRegisterBtn.setOnClickListener {
-            mPresenter.register("","","")
+            mPresenter.register(mMobileEt.text.toString(),mVerifyCodeEt.text.toString(),mPwdEt.text.toString())
         }
     }
 

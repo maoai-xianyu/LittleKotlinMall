@@ -4,6 +4,8 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_register.*
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
 import mall.kotlin.com.usercenter.R
+import mall.kotlin.com.usercenter.injection.component.DaggerUserComponent
+import mall.kotlin.com.usercenter.injection.module.UserModule
 import mall.kotlin.com.usercenter.presenter.RegisterPresenter
 import mall.kotlin.com.usercenter.presenter.view.RegisterView
 import org.jetbrains.anko.startActivity
@@ -14,12 +16,21 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        mPresenter = RegisterPresenter()
-        mPresenter.mView = this
+
+        initInjection()
+
         // 传统意义的定义
         mRegisterBtn.setOnClickListener {
-            mPresenter.register(mMobileEt.text.toString(),mPwdEt.text.toString(),mVerifyCodeEt.text.toString())
+            mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
         }
+    }
+
+    private fun initInjection() {
+        DaggerUserComponent.builder()
+                .userModule(UserModule())
+                .build().inject(this)
+        mPresenter.mView = this
+
     }
 
     override fun onRegisterResult(result: Boolean) {

@@ -2,6 +2,7 @@ package mall.kotlin.com.baselibrary.ui.activity
 
 import mall.kotlin.com.baselibrary.presenter.BasePresenter
 import mall.kotlin.com.baselibrary.presenter.view.BaseView
+import javax.inject.Inject
 
 /**
  * author:  zhangkun .
@@ -17,5 +18,6 @@ open class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
     override fun onError() {
     }
 
+    @Inject
     lateinit var mPresenter: T
 }

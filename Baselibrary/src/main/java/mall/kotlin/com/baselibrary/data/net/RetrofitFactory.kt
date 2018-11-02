@@ -12,9 +12,10 @@ import java.util.concurrent.TimeUnit
 /**
  * author:  zhangkun .
  * date:    on 2018/10/25.
- * 单例
+ *
  */
 class RetrofitFactory private constructor() {
+    //单例
     companion object {
         val instance: RetrofitFactory by lazy {
             RetrofitFactory()
@@ -52,12 +53,14 @@ class RetrofitFactory private constructor() {
                 .build()
     }
 
+    // 日志拦截器
     private fun initLogInterceptor(): Interceptor {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
     }
 
+    // create 方法
     fun <T> create(server: Class<T>): T {
         return retrofit.create(server)
     }

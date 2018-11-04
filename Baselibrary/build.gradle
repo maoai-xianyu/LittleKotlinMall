@@ -39,15 +39,22 @@ dependencies {
     api("org.jetbrains.anko:anko-support-v4-commons:$anko_version") {
         exclude group: 'com.android.support'
     }
+    // rx
     api "io.reactivex:rxkotlin:$rx_kotlin_version"
     api "io.reactivex:rxandroid:$rx_android_version"
+    // retrofi
     api "com.squareup.okhttp3:okhttp:$ok_http_version"
     api "com.squareup.okhttp3:logging-interceptor:$ok_http_version"
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"
     api "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
+    // dagger2
     api "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    // Rxlifecycle
+    api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
+    api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
+
 }
 repositories {
     mavenCentral()

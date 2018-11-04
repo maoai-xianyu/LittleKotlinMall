@@ -23,6 +23,10 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         mRegisterBtn.setOnClickListener {
             mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
         }
+
+        mVerifyCodeBtm.setOnClickListener {
+            mPresenter.registerNamed(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
+        }
     }
 
     private fun initInjection() {
@@ -35,8 +39,13 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
     }
 
     override fun onRegisterResult(result: Boolean) {
-        toast("注册成功")
-        //startActivity(intentFor<TestActivity>("id" to 5))
-        startActivity<TestActivity>("id" to 10)
+        if(result){
+            toast("注册成功")
+            //startActivity(intentFor<TestActivity>("id" to 5))
+            startActivity<TestActivity>("id" to 10)
+        }else {
+            toast("注册失败")
+        }
+
     }
 }

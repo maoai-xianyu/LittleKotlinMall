@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.Provides
 import mall.kotlin.com.usercenter.service.UserService
 import mall.kotlin.com.usercenter.service.impl.UserServiceImpl
+import mall.kotlin.com.usercenter.service.impl.UserServiceImplNamed
+import javax.inject.Named
 
 /**
  * author:  zhangkun .
@@ -13,7 +15,14 @@ import mall.kotlin.com.usercenter.service.impl.UserServiceImpl
 class UserModule {
 
     @Provides
+    @Named("service")
     fun providesUserService(service: UserServiceImpl): UserService {
+        return service
+    }
+
+    @Provides
+    @Named("serviceNamed")
+    fun providesUserServiceNamed(service: UserServiceImplNamed): UserService {
         return service
     }
 }

@@ -38,14 +38,10 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
 
     }
 
-    override fun onRegisterResult(result: Boolean) {
-        if(result){
-            toast("注册成功")
-            //startActivity(intentFor<TestActivity>("id" to 5))
+    override fun onRegisterResult(result: String) {
+        toast(result)
+        //startActivity(intentFor<TestActivity>("id" to 5))
+        if (result == "注册成功")
             startActivity<TestActivity>("id" to 10)
-        }else {
-            toast("注册失败")
-        }
-
     }
 }

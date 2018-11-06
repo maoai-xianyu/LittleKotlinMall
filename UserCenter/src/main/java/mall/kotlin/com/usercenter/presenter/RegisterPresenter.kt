@@ -12,7 +12,7 @@ import javax.inject.Named
  * author:  zhangkun .
  * date:    on 2018/10/25.
  */
-class RegisterPresenter @Inject constructor(): BasePresenter<RegisterView>() {
+class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
     @Inject
     //@Named("service")  //写法错误，这个是在java中写的，kotlin不这样写,会报错
@@ -26,30 +26,37 @@ class RegisterPresenter @Inject constructor(): BasePresenter<RegisterView>() {
     @field:[Named("serviceNamed")]
     lateinit var userServiceNamed: UserService
 
-    fun register(mobile: String, pwd: String,verifyCode: String) {
+    fun register(mobile: String, pwd: String, verifyCode: String) {
 
         /**
          * 业务逻辑
          */
-        userService.register(mobile, pwd,verifyCode)
+        userService.register(mobile, pwd, verifyCode)
                 .execute(object : BaseSubscriber<Boolean>() {
                     override fun onNext(t: Boolean) {
-                        mView.onRegisterResult(t)
+                        if (t)
+                            mView.onRegisterResult("注册成功")
+                        else
+                            mView.onRegisterResult("注册失败")
                     }
-                },lifecycleProvider)
+                }, lifecycleProvider)
     }
 
 
-    fun registerNamed(mobile: String, pwd: String,verifyCode: String) {
+    fun registerNamed(mobile: String, pwd: String, verifyCode: String) {
 
         /**
          * 业务逻辑
          */
-        userServiceNamed.register(mobile, pwd,verifyCode)
+        userServiceNamed.register(mobile, pwd, verifyCode)
                 .execute(object : BaseSubscriber<Boolean>() {
                     override fun onNext(t: Boolean) {
-                        mView.onRegisterResult(t)
+                        if (t)
+                            mView.onRegisterResult("注册成功")
+                        else
+                            mView.onRegisterResult("注册失败")
+
                     }
-                },lifecycleProvider)
+                }, lifecycleProvider)
     }
 }

@@ -1,7 +1,9 @@
 package mall.kotlin.com.usercenter.ui.activity
 
 import android.os.Bundle
+import android.view.View
 import kotlinx.android.synthetic.main.activity_register.*
+import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
 import mall.kotlin.com.usercenter.R
 import mall.kotlin.com.usercenter.injection.component.DaggerUserComponent
@@ -17,25 +19,30 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        initInjection()
-
         // 传统意义的定义
-        mRegisterBtn.setOnClickListener {
+        /* mRegisterBtn.setOnClickListener {
+             mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
+         }*/
+
+        //扩展函数
+        mRegisterBtn.onClick {
             mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
         }
 
-        mVerifyCodeBtm.setOnClickListener {
-            mPresenter.registerNamed(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
-        }
+        mVerifyCodeBtm.onClick(object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+                mPresenter.registerNamed(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
+            }
+        })
     }
 
-    private fun initInjection() {
+
+    override fun injectComponent() {
         DaggerUserComponent.builder()
                 .activityComponent(activityComponent)
                 .userModule(UserModule())
                 .build().inject(this)
         mPresenter.mView = this
-
     }
 
     override fun onRegisterResult(result: String) {

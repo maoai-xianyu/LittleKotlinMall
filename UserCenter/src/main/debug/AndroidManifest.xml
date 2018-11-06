@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mall.kotlin.com.usercenter">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name="mall.kotlin.com.baselibrary.BaseApplication"
         android:allowBackup="true"

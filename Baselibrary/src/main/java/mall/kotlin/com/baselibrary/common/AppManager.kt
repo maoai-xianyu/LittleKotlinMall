@@ -1,6 +1,8 @@
 package mall.kotlin.com.baselibrary.common
 
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
 import java.util.*
 
 /**
@@ -43,14 +45,20 @@ class AppManager private constructor() {
     /**
      * 退出app清理栈
      */
-    fun finishAllActivity(){
-        for (activity in activityStack){
+    fun finishAllActivity() {
+        for (activity in activityStack) {
             activity.finish()
         }
         activityStack.clear()
     }
 
-    fun exitApp(){
+    /**
+     * 退出应用程序
+     */
+    fun exitApp(context: Context) {
         finishAllActivity()
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        activityManager.killBackgroundProcesses(context.packageName)
+        System.exit(0)
     }
 }

@@ -1,6 +1,8 @@
 package mall.kotlin.com.baselibrary.presenter
 
+import com.trello.rxlifecycle.LifecycleProvider
 import mall.kotlin.com.baselibrary.presenter.view.BaseView
+import javax.inject.Inject
 
 /**
  * author:  zhangkun .
@@ -9,4 +11,7 @@ import mall.kotlin.com.baselibrary.presenter.view.BaseView
 open class BasePresenter<T : BaseView> {
 
     lateinit var mView: T
+
+    @Inject
+    lateinit var lifecycleProvider: LifecycleProvider<*>
 }

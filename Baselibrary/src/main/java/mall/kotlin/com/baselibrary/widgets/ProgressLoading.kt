@@ -11,13 +11,13 @@ import mall.kotlin.com.baselibrary.R
  * author:  zhangkun .
  * date:    on 2018/11/7.
  */
-class Progressloading(context: Context, theme: Int) : Dialog(context, theme) {
+class ProgressLoading private constructor(context: Context, theme: Int) : Dialog(context, theme) {
     companion object {
-        private lateinit var mDialog: Progressloading
+        private lateinit var mDialog: ProgressLoading
         private var animDrawable: AnimationDrawable? = null
 
-        fun create(context: Context) {
-            mDialog = Progressloading(context, R.style.LightProgressDialog)
+        fun create(context: Context): ProgressLoading {
+            mDialog = ProgressLoading(context, R.style.LightProgressDialog)
             mDialog.setContentView(R.layout.progress_dialog)
             mDialog.setCancelable(true) //是否可以取消
             mDialog.setCanceledOnTouchOutside(false) //点击外面是否可以取消
@@ -30,16 +30,16 @@ class Progressloading(context: Context, theme: Int) : Dialog(context, theme) {
             val loadingView = mDialog.findViewById<ImageView>(R.id.iv_loading)
             animDrawable = loadingView.background as AnimationDrawable
 
-
+            return mDialog
         }
     }
 
-    fun showLoading(){
+    fun showLoading() {
         super.show()
         animDrawable?.start()
     }
 
-    fun hideLoading(){
+    fun hideLoading() {
         super.dismiss()
         animDrawable?.stop()
     }

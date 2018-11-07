@@ -31,8 +31,13 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
         /**
          * 业务逻辑
          */
+        if (!checkNetWork()){
+            println("没有网络")
+            return
+        }
+        mView.showLoading()
         userService.register(mobile, pwd, verifyCode)
-                .execute(object : BaseSubscriber<Boolean>() {
+                .execute(object : BaseSubscriber<Boolean>(mView) {
                     override fun onNext(t: Boolean) {
                         if (t)
                             mView.onRegisterResult("注册成功")
@@ -48,8 +53,9 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
         /**
          * 业务逻辑
          */
+        mView.showLoading()
         userServiceNamed.register(mobile, pwd, verifyCode)
-                .execute(object : BaseSubscriber<Boolean>() {
+                .execute(object : BaseSubscriber<Boolean>(mView) {
                     override fun onNext(t: Boolean) {
                         if (t)
                             mView.onRegisterResult("注册成功")

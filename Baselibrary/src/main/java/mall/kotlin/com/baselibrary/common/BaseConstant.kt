@@ -9,8 +9,10 @@ class BaseConstant {
     companion object {
 
         // 家里电脑
-        //val SERVER_ADDRESS = "http://192.168.0.118:8080/"
+        //const val SERVER_ADDRESS = "http://192.168.0.118:8080/"
         // 公司电脑
-        val SERVER_ADDRESS = "http://192.168.77.73:8080/"
+        const val SERVER_ADDRESS = "http://192.168.77.73:8080/"
+
+        const val TABLE_PREFS = "Kotlin_mall"
     }
 }

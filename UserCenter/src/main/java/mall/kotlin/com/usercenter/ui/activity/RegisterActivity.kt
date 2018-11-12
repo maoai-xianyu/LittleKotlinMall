@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import mall.kotlin.com.baselibrary.common.AppManager
 import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
+import mall.kotlin.com.baselibrary.widgets.VerifyButton
 import mall.kotlin.com.usercenter.R
 import mall.kotlin.com.usercenter.injection.component.DaggerUserComponent
 import mall.kotlin.com.usercenter.injection.module.UserModule
@@ -32,9 +33,19 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
             mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
         }
 
-        mVerifyCodeBtm.onClick(object : View.OnClickListener {
+       /* mVerifyCodeBtm.onClick(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 mPresenter.registerNamed(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
+            }
+        })*/
+
+        mVerifyCodeBtm.onClick {
+            mVerifyCodeBtm.requestSendVerifyNumber()
+        }
+
+        // 目前没有什么用
+        mVerifyCodeBtm.setOnVerifyBtnClick(object : VerifyButton.OnVerifyBtnClick{
+            override fun onClick() {
             }
         })
     }

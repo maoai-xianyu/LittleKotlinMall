@@ -27,10 +27,24 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.getArgs(this.intent.extras)
+        this.setContentView(this.setView())
         initActivityInjection()
         injectComponent()
+        initView()
+        setListener()
         mLoadingDialog = ProgressLoading.create(this)
     }
+
+    // 获取参数
+    abstract fun getArgs(var1: Bundle?)
+
+    // 布局文件
+    abstract fun setView(): Int
+    // 控件
+    abstract fun initView()
+    // 初始化事件
+    abstract fun setListener()
 
     abstract fun injectComponent()
 
@@ -53,4 +67,6 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     override fun onError(text: String) {
         toast(text)
     }
+
+
 }

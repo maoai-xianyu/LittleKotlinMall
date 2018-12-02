@@ -34,14 +34,15 @@ fun <T> Observable<BaseResp<T>>.convertBoolean(): Observable<Boolean> {
 }
 
 // 点击事件
-fun View.onClick(listener: View.OnClickListener) {
+fun View.onClick(listener: View.OnClickListener) :View{
     this.setOnClickListener(listener)
-    this.setOnClickListener { }
+    return this
 }
 
 // 传入函数作为参数传递
-fun View.onClick(method: () -> Unit) {
+fun View.onClick(method: () -> Unit) :View{
     this.setOnClickListener { method() }
+    return this
 }
 
 // 扩展button是否可用

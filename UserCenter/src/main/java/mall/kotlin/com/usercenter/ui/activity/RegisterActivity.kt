@@ -1,16 +1,11 @@
 package mall.kotlin.com.usercenter.ui.activity
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import kotlinx.android.synthetic.main.activity_register.*
 import mall.kotlin.com.baselibrary.common.AppManager
 import mall.kotlin.com.baselibrary.ext.enable
-import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
-import mall.kotlin.com.baselibrary.widgets.DefaultTextWatcher
-import mall.kotlin.com.baselibrary.widgets.VerifyButton
 import mall.kotlin.com.usercenter.R
 import mall.kotlin.com.usercenter.injection.component.DaggerUserComponent
 import mall.kotlin.com.usercenter.injection.module.UserModule
@@ -55,7 +50,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 super.onTextChanged(p0, p1, p2, p3)
             }
-        })*/11
+        })*/
         mRegisterBtn.enable(mMobileEt) {isBtnEnable()}
         mRegisterBtn.enable(mVerifyCodeEt) {isBtnEnable()}
         mRegisterBtn.enable(mPwdEt) {isBtnEnable()}

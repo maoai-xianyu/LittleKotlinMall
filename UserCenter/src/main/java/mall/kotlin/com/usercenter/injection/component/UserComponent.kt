@@ -4,6 +4,7 @@ import dagger.Component
 import mall.kotlin.com.baselibrary.injection.PerComponentScope
 import mall.kotlin.com.baselibrary.injection.component.ActivityComponent
 import mall.kotlin.com.usercenter.injection.module.UserModule
+import mall.kotlin.com.usercenter.ui.activity.LoginActivity
 import mall.kotlin.com.usercenter.ui.activity.RegisterActivity
 
 /**
@@ -18,6 +19,7 @@ import mall.kotlin.com.usercenter.ui.activity.RegisterActivity
 interface UserComponent {
 
     fun inject(activity: RegisterActivity)
+    fun inject(activity: LoginActivity)
 
 
 }

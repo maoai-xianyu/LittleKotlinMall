@@ -6,7 +6,6 @@ import mall.kotlin.com.baselibrary.rx.BaseSubscriber
 import mall.kotlin.com.usercenter.presenter.view.RegisterView
 import mall.kotlin.com.usercenter.service.UserService
 import javax.inject.Inject
-import javax.inject.Named
 
 /**
  * author:  zhangkun .
@@ -14,17 +13,20 @@ import javax.inject.Named
  */
 class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
-    @Inject
+   /* @Inject
     //@Named("service")  //写法错误，这个是在java中写的，kotlin不这样写,会报错
     // mall.kotlin.com.usercenter.service.UserService cannot be provided without an @Provides-annotated method.
     //    public abstract void inject(@org.jetbrains.annotations.NotNull()
     @field:[Named("service")]
-    lateinit var userService: UserService
+    lateinit var userService: UserService*/
 
-    @Inject
+   /* @Inject
     //@Named("serviceNamed")
     @field:[Named("serviceNamed")]
-    lateinit var userServiceNamed: UserService
+    lateinit var userServiceNamed: UserService*/
+
+    @Inject
+    lateinit var userService: UserService
 
     fun register(mobile: String, pwd: String, verifyCode: String) {
 
@@ -47,11 +49,7 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
     }
 
 
-    fun registerNamed(mobile: String, pwd: String, verifyCode: String) {
-
-        /**
-         * 业务逻辑
-         */
+    /*fun registerNamed(mobile: String, pwd: String, verifyCode: String) {
         mView.showLoading()
         userServiceNamed.register(mobile, pwd, verifyCode)
                 .execute(object : BaseSubscriber<Boolean>(mView) {
@@ -63,5 +61,5 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
                     }
                 }, lifecycleProvider)
-    }
+    }*/
 }

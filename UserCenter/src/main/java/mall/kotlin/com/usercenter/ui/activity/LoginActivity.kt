@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_login.*
 import mall.kotlin.com.baselibrary.ext.enable
+import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
 import mall.kotlin.com.usercenter.R
 import mall.kotlin.com.usercenter.data.protocol.UserInfo
@@ -11,6 +12,8 @@ import mall.kotlin.com.usercenter.injection.component.DaggerUserComponent
 import mall.kotlin.com.usercenter.injection.module.UserModule
 import mall.kotlin.com.usercenter.presenter.LoginPresenter
 import mall.kotlin.com.usercenter.presenter.view.LoginView
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
@@ -18,8 +21,9 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     override fun getArgs(var1: Bundle?) {
 
     }
+
     override fun setView(): Int {
-        return  R.layout.activity_login
+        return R.layout.activity_login
     }
 
     override fun initView() {
@@ -28,10 +32,10 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
     override fun setListener() {
 
-        mLoginBtn.setOnClickListener(this)
-
-        mLoginBtn.enable(mMobileEt) {isBtnEnable()}
-        mLoginBtn.enable(mPwdEt) {isBtnEnable()}
+        mLoginBtn.onClick(this)
+        mLoginBtn.enable(mMobileEt) { isBtnEnable() }
+        mLoginBtn.enable(mPwdEt) { isBtnEnable() }
+        mHeaderBar.getRightView().onClick(this)
     }
 
     override fun injectComponent() {
@@ -43,21 +47,26 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     }
 
 
-
     override fun onClick(view: View) {
-        when(view.id){
-            R.id.mLoginBtn ->{
+        when (view.id) {
+            R.id.mRightTv -> {
+                startActivity<RegisterActivity>()
+            }
+
+            R.id.mLoginBtn -> {
+                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
             }
         }
     }
 
     // 用于判断注册按钮是否能点击
-    private fun isBtnEnable():Boolean{
+    private fun isBtnEnable(): Boolean {
         return mMobileEt.text.isNullOrEmpty().not() and
-         mPwdEt.text.isNullOrEmpty().not()
+                mPwdEt.text.isNullOrEmpty().not()
     }
 
     override fun onLoginResult(result: UserInfo) {
+        toast("登录成功")
     }
 
 }

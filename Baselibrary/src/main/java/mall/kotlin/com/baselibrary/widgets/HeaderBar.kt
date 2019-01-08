@@ -1,11 +1,14 @@
 package mall.kotlin.com.baselibrary.widgets
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 import mall.kotlin.com.baselibrary.R
+import mall.kotlin.com.baselibrary.ext.onClick
 
 /**
  * author:  zhangkun .
@@ -38,6 +41,19 @@ class HeaderBar @JvmOverloads constructor(
             mRightTv.text = it
             mRightTv.visibility = View.VISIBLE
         }
+
+        /**
+         * 返回键
+         */
+        mLeftIv.onClick {
+            if (context is Activity) {
+                (context as Activity).finish()
+            }
+        }
+    }
+
+    fun getRightView(): TextView {
+        return mRightTv
     }
 
 }

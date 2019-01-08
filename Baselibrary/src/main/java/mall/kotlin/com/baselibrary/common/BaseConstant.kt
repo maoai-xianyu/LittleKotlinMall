@@ -14,7 +14,7 @@ class BaseConstant {
         //const val SERVER_ADDRESS = "http://192.168.77.73:8080/"
 
         // 自己新电脑
-        const val SERVER_ADDRESS = "http://192.168.77.185:8080/"
+        const val SERVER_ADDRESS = "http://192.168.77.64:8080/"
 
         const val TABLE_PREFS = "Kotlin_mall"
     }

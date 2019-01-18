@@ -1,10 +1,17 @@
 package mall.kotlin.com.baselibrary
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import mall.kotlin.com.baselibrary.injection.component.AppComponent
 import mall.kotlin.com.baselibrary.injection.component.DaggerAppComponent
 import mall.kotlin.com.baselibrary.injection.module.AppModule
+import timber.log.Timber
+
+
+
 
 /**
  * author:  zhangkun .
@@ -17,6 +24,7 @@ class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initAppInjection()
+        initLog()
         context = this
     }
 
@@ -26,7 +34,13 @@ class BaseApplication : Application() {
     }
 
     companion object {
-        lateinit var  context:Context
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
+    }
+
+    private fun initLog() {
+        Timber.plant(Timber.DebugTree())
+        Logger.addLogAdapter(AndroidLogAdapter())
     }
 
 }

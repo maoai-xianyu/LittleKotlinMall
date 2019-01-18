@@ -18,7 +18,7 @@ import org.jetbrains.anko.toast
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 
-    override fun getArgs(var1: Bundle?) {
+    override fun getArgs(bundle: Bundle?) {
 
     }
 
@@ -72,6 +72,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")
+        startActivity<UserInfoActivity>()
     }
 
 }

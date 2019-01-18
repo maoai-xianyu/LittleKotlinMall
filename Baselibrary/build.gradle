@@ -56,9 +56,23 @@ dependencies {
     api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
     api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
     api 'com.android.support:recyclerview-v7:28.0.0'
+    // glide
     api "com.github.bumptech.glide:glide:$glide_version"
+    // 圆形图片
+    api "de.hdodenhof:circleimageview:$circle_imageView_version"
+    // take photo
+    api "com.jph.takephoto:takephoto_library:$take_photo_version"
+    // alert view
+    api "com.bigkoo:alertview:$alert_view_view"
+    // timber log
+    api "com.jakewharton.timber:timber:$timber_version"
+    // logger
+    api "com.orhanobut:logger:$logger_version"
+
 }
 repositories {
+    google()
+    jcenter()
     mavenCentral()
 }
 

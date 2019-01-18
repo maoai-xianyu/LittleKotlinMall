@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mall.kotlin.com.usercenter">
 
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name="mall.kotlin.com.baselibrary.BaseApplication"
         android:allowBackup="true"
@@ -20,6 +25,7 @@
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.ForgetPwdPwdActivity" />
         <activity android:name=".ui.activity.ResetPwdActivity" />
+        <activity android:name=".ui.activity.UserInfoActivity" />
     </application>
 
 </manifest>

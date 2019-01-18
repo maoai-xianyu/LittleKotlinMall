@@ -11,6 +11,11 @@ buildscript {
     ext.dagger_version='2.16'
     ext.rx_lifecycle_version='1.0'
     ext.glide_version='3.7.0'
+    ext.circle_imageView_version='3.0.0'
+    ext.take_photo_version='4.0.3'
+    ext.alert_view_view='1.0.3'
+    ext.timber_version='4.7.1'
+    ext.logger_version='2.2.0'
 
     repositories {
         google()

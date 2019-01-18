@@ -1,5 +1,6 @@
 package mall.kotlin.com.usercenter.service.impl
 
+import mall.kotlin.com.baselibrary.ext.convertBoolean
 import mall.kotlin.com.baselibrary.rx.BaseFunc
 import mall.kotlin.com.baselibrary.rx.BaseFuncBoolean
 import mall.kotlin.com.usercenter.data.protocol.UserInfo
@@ -25,5 +26,15 @@ class UserServiceImplNamed @Inject constructor() : UserService {
     override fun login(mobile: String, pwd: String, pushId: String): Observable<UserInfo> {
         return repository.login(mobile, pwd, pushId)
                 .flatMap(BaseFunc())
+    }
+
+    override fun forgetPwd(mobile: String, verifyCode: String): Observable<Boolean> {
+        return repository.forgetPwd(mobile, verifyCode)
+                .convertBoolean()
+    }
+
+    override fun resetPwd(mobile: String, pwd: String): Observable<Boolean> {
+        return repository.resetPwd(mobile, pwd)
+                .convertBoolean()
     }
 }

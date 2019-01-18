@@ -37,12 +37,14 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     }
 
     // 获取参数
-    abstract fun getArgs(var1: Bundle?)
+    abstract fun getArgs(bundle: Bundle?)
 
     // 布局文件
     abstract fun setView(): Int
+
     // 控件
     abstract fun initView()
+
     // 初始化事件
     abstract fun setListener()
 

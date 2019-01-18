@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".ui.activity.TestActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.ForgetPwdPwdActivity" />
+        <activity android:name=".ui.activity.ResetPwdActivity" />
     </application>
 
 </manifest>

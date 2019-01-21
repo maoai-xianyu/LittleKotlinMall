@@ -17,6 +17,7 @@ buildscript {
     ext.timber_version='4.7.1'
     ext.logger_version='2.2.0'
     ext.qiniu_version='7.3.+'
+    ext.bottom_navigation_bar_version='2.1.0'
 
     repositories {
         google()

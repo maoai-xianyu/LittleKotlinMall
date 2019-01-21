@@ -71,6 +71,9 @@ dependencies {
     // qiniu
     api "com.qiniu:qiniu-android-sdk:$qiniu_version"
 
+    // navigation
+    api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar_version"
+
 }
 repositories {
     google()

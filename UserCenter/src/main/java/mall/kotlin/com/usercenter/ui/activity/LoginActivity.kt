@@ -12,6 +12,7 @@ import mall.kotlin.com.usercenter.injection.component.DaggerUserComponent
 import mall.kotlin.com.usercenter.injection.module.UserModule
 import mall.kotlin.com.usercenter.presenter.LoginPresenter
 import mall.kotlin.com.usercenter.presenter.view.LoginView
+import mall.kotlin.com.usercenter.utils.UserPrefsUtils
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -72,6 +73,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
 
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")
+        // 存储
+        UserPrefsUtils.putUserInfo(result)
         startActivity<UserInfoActivity>()
     }
 

@@ -21,5 +21,7 @@ class BaseConstant {
         //const val SERVER_ADDRESS = "http://139.159.161.40:8080/Kotlin_Server/"
 
         const val TABLE_PREFS = "Kotlin_mall"
+
+        const val KEY_SP_TOKEN = "token"
     }
 }

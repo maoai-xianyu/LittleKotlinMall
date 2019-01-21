@@ -1,6 +1,7 @@
 package mall.kotlin.com.usercenter.presenter.view
 
 import mall.kotlin.com.baselibrary.presenter.view.BaseView
+import mall.kotlin.com.usercenter.data.protocol.UserInfo
 
 /**
  * author:  zhangkun .
@@ -8,6 +9,7 @@ import mall.kotlin.com.baselibrary.presenter.view.BaseView
  */
 interface UserInfoView : BaseView {
 
-    fun onGeyUploadTokenResult(result:String)
+    fun onGetUploadTokenResult(result:String)
+    fun onEditUserResult(result:UserInfo)
 
 }

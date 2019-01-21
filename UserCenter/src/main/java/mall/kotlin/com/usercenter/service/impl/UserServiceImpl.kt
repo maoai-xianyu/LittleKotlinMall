@@ -50,4 +50,12 @@ class UserServiceImpl @Inject constructor() : UserService {
         return repository.resetPwd(mobile, pwd)
                 .convertBoolean()
     }
+
+    /**
+     * 编辑用户信息
+     */
+    override fun editUser(userIcon: String, userName: String, userGender: String, userSign: String): Observable<UserInfo> {
+        return repository.editUser(userIcon, userName, userGender, userSign)
+                .convert()
+    }
 }

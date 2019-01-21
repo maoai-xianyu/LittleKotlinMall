@@ -8,4 +8,6 @@ import mall.kotlin.com.baselibrary.presenter.view.BaseView
  */
 interface UserInfoView : BaseView {
 
+    fun onGeyUploadTokenResult(result:String)
+
 }

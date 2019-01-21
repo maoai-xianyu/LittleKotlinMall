@@ -68,6 +68,8 @@ dependencies {
     api "com.jakewharton.timber:timber:$timber_version"
     // logger
     api "com.orhanobut:logger:$logger_version"
+    // qiniu
+    api "com.qiniu:qiniu-android-sdk:$qiniu_version"
 
 }
 repositories {

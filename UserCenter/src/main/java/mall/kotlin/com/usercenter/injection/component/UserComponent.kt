@@ -3,6 +3,7 @@ package mall.kotlin.com.usercenter.injection.component
 import dagger.Component
 import mall.kotlin.com.baselibrary.injection.PerComponentScope
 import mall.kotlin.com.baselibrary.injection.component.ActivityComponent
+import mall.kotlin.com.usercenter.injection.module.UploadModule
 import mall.kotlin.com.usercenter.injection.module.UserModule
 import mall.kotlin.com.usercenter.ui.activity.*
 
@@ -13,7 +14,7 @@ import mall.kotlin.com.usercenter.ui.activity.*
 @PerComponentScope
 @Component(
         dependencies = [ActivityComponent::class],
-        modules = [UserModule::class]
+        modules = [UserModule::class, UploadModule::class]
 )
 interface UserComponent {
 

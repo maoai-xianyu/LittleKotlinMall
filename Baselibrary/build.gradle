@@ -70,9 +70,10 @@ dependencies {
     api "com.orhanobut:logger:$logger_version"
     // qiniu
     api "com.qiniu:qiniu-android-sdk:$qiniu_version"
-
     // navigation
     api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar_version"
+    // banner
+    api "com.youth.banner:banner:$banner_version"
 
 }
 repositories {

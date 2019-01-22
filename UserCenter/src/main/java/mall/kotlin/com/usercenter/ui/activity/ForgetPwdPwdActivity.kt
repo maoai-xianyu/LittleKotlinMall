@@ -1,6 +1,5 @@
 package mall.kotlin.com.usercenter.ui.activity
 
-import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_forget_pwd.*
 import mall.kotlin.com.baselibrary.ext.enable
@@ -20,17 +19,11 @@ import org.jetbrains.anko.toast
 
 class ForgetPwdPwdActivity : BaseMvpActivity<ForgetPwdPresenter>(), ForgetPwdView, View.OnClickListener {
 
-    override fun getArgs(var1: Bundle?) {
-
-    }
 
     override fun setView(): Int {
         return R.layout.activity_forget_pwd
     }
 
-    override fun initView() {
-
-    }
 
     override fun setListener() {
 

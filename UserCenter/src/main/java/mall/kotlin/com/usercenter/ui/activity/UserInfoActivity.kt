@@ -67,9 +67,6 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, Tak
         super.onCreate(savedInstanceState)
     }
 
-    override fun getArgs(bundle: Bundle?) {
-
-    }
 
     override fun setView(): Int {
         return R.layout.activity_user_info

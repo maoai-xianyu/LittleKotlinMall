@@ -1,6 +1,5 @@
 package mall.kotlin.com.usercenter.ui.activity
 
-import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_login.*
 import mall.kotlin.com.baselibrary.ext.enable
@@ -19,16 +18,9 @@ import org.jetbrains.anko.toast
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 
-    override fun getArgs(bundle: Bundle?) {
-
-    }
 
     override fun setView(): Int {
         return R.layout.activity_login
-    }
-
-    override fun initView() {
-
     }
 
     override fun setListener() {

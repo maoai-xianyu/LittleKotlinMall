@@ -18,6 +18,7 @@ buildscript {
     ext.logger_version='2.2.0'
     ext.qiniu_version='7.3.+'
     ext.bottom_navigation_bar_version='2.1.0'
+    ext.banner_version='1.4.10'
 
     repositories {
         google()

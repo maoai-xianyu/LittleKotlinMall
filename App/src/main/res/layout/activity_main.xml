@@ -6,6 +6,11 @@
     android:gravity="bottom"
     tools:context=".ui.activity.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/mContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
     <mall.kotlin.com.baselibrary.widgets.BottomNavBar
         android:id="@+id/mBottomNavBar"

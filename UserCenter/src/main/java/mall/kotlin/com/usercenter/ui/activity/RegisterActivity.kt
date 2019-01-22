@@ -1,6 +1,5 @@
 package mall.kotlin.com.usercenter.ui.activity
 
-import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_register.*
 import mall.kotlin.com.baselibrary.common.AppManager
@@ -17,16 +16,11 @@ import org.jetbrains.anko.toast
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
     private var pressTime: Long = 0
 
-    override fun getArgs(var1: Bundle?) {
 
-    }
     override fun setView(): Int {
         return  R.layout.activity_register
     }
 
-    override fun initView() {
-
-    }
 
     override fun setListener() {
         // 传统意义的定义

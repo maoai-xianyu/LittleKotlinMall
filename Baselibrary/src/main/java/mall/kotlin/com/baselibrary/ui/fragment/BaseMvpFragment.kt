@@ -1,6 +1,7 @@
 package mall.kotlin.com.baselibrary.ui.fragment
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,7 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     lateinit var activityComponent: ActivityComponent
 
-    lateinit var rootView: View
+    private var rootView: View? = null//根布局
 
     private lateinit var mLoadingDialog: ProgressLoading
 
@@ -51,7 +52,12 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
         super.onViewCreated(view, savedInstanceState)
         initView()
         setListener()
-        if(!useLazyLoad){
+        if (useLazyLoad) {
+            if (isVisibleToUser && !isLazyLoad && getView() != null) {
+                isLazyLoad = true
+                start()
+            }
+        } else {
             start()
         }
     }
@@ -69,16 +75,19 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
     }
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        this.isVisibleToUser = isVisibleToUser
-        if (useLazyLoad && isVisibleToUser && view != null) {
-            if(!isLazyLoad){
-                isLazyLoad = true
-                start()
-            }else{
-                // 从不可见到可见
-                whenViewVisible()
+        if (useLazyLoad) {
+            this.isVisibleToUser = isVisibleToUser
+            if (isVisibleToUser && view != null) {
+                if (!isLazyLoad) {
+                    isLazyLoad = true
+                    start()
+                } else {
+                    // 从不可见到可见
+                    whenViewVisible()
+                }
             }
         }
+
         super.setUserVisibleHint(isVisibleToUser)
     }
 
@@ -121,5 +130,33 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     override fun onError(text: String) {
         toast(text)
+    }
+
+
+    override fun getView(): View? {
+        return rootView
+    }
+
+    protected fun isLazyLoad(): Boolean {
+        return isLazyLoad
+    }
+
+    fun isVisibleToUser(): Boolean {
+        return isVisibleToUser
+    }
+
+
+    override fun onDetach() {
+        super.onDetach()
+        //解决java.lang.IllegalStateException: Activity has been destroyed 的错误
+        try {
+            val childFragmentManager = Fragment::class.java.getDeclaredField("mChildFragmentManager")
+            childFragmentManager.isAccessible = true
+            childFragmentManager.set(this, null)
+        } catch (e: NoSuchFieldException) {
+            throw RuntimeException(e)
+        } catch (e: IllegalAccessException) {
+            throw RuntimeException(e)
+        }
     }
 }

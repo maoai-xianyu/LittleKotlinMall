@@ -9,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import mall.kotlin.com.baselibrary.R
+import mall.kotlin.com.baselibrary.widgets.GlideRoundedCornersTransform
 
 /*
     Glide工具类
@@ -58,4 +59,37 @@ object GlideUtils {
         }
         Glide.with(context).load(url).apply(options).into(simpleTarget)
     }
+
+
+    /**
+     * string url
+     */
+    fun loadCourseCoverUrlImageCenterCropCorners(context: Context, url: String, imageView: ImageView, corners: Float, cornerType: GlideRoundedCornersTransform.CornerType) {
+
+        val options = RequestOptions()
+                .optionalTransform(GlideRoundedCornersTransform(context, corners, cornerType))
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+
+        Glide.with(context)
+                .load(url)
+                .apply(options)
+                .into(imageView)
+    }
+
+    /**
+     *  res url
+     */
+    fun loadCourseCoverUrlImageCenterCropCorners(context: Context, url: Int, imageView: ImageView, corners: Float, cornerType: GlideRoundedCornersTransform.CornerType) {
+        val options = RequestOptions()
+                .optionalTransform(GlideRoundedCornersTransform(context, corners, cornerType))
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+
+        Glide.with(context)
+                .load(url)
+                .apply(options)
+                .into(imageView)
+    }
+
 }

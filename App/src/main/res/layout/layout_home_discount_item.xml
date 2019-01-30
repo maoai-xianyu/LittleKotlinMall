@@ -5,7 +5,7 @@
     android:gravity="center_horizontal"
     android:paddingRight="@dimen/common_padding">
 
-   <!-- <RelativeLayout
+    <RelativeLayout
         android:layout_width="71.0dip"
         android:layout_height="wrap_content">
 
@@ -18,7 +18,7 @@
         <jp.shts.android.library.TriangleLabelView
             style="@style/WrapWrap"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             app:backgroundColor="@color/common_red"
             app:corner="rightTop"
             app:labelBottomPadding="5.0dip"
@@ -39,5 +39,5 @@
         android:id="@+id/mDiscountBeforeTv"
         style="@style/WrapWrap"
         android:textColor="@color/common_disable"
-        android:textSize="10.0sp" />-->
+        android:textSize="10.0sp" />
 </LinearLayout>

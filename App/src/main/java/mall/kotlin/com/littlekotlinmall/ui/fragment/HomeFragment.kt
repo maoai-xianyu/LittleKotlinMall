@@ -1,15 +1,14 @@
 package mall.kotlin.com.littlekotlinmall.ui.fragment
 
+import android.support.v7.widget.LinearLayoutManager
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import mall.kotlin.com.baselibrary.ui.fragment.BaseUIFragment
 import mall.kotlin.com.baselibrary.widgets.BannerImageLoader
 import mall.kotlin.com.littlekotlinmall.R
-import mall.kotlin.com.littlekotlinmall.commom.HOME_BANNER_FOUR
-import mall.kotlin.com.littlekotlinmall.commom.HOME_BANNER_ONE
-import mall.kotlin.com.littlekotlinmall.commom.HOME_BANNER_THREE
-import mall.kotlin.com.littlekotlinmall.commom.HOME_BANNER_TWO
+import mall.kotlin.com.littlekotlinmall.commom.*
+import mall.kotlin.com.littlekotlinmall.ui.adapter.HomeDiscountAdapter
 
 
 /**
@@ -25,6 +24,7 @@ class HomeFragment : BaseUIFragment() {
 
         initBanner()
         initNews()
+        initDiscount()
     }
 
 
@@ -52,6 +52,21 @@ class HomeFragment : BaseUIFragment() {
     fun initNews() {
         // 公告
         mNewsFlipperView.setData(arrayOf("夏日炎炎，第一波福利还有30秒到达战场", "新用户立领1000元优惠券"))
+
+    }
+
+    fun initDiscount() {
+        val manager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        mHomeDiscountRv.layoutManager = manager
+        val discountAdapter = HomeDiscountAdapter(activity!!)
+        mHomeDiscountRv.adapter = discountAdapter
+        discountAdapter.setData(
+                mutableListOf(HOME_DISCOUNT_ONE,
+                        HOME_DISCOUNT_TWO,
+                        HOME_DISCOUNT_THREE,
+                        HOME_DISCOUNT_FOUR
+                        , HOME_DISCOUNT_FIVE)
+        )
 
     }
 

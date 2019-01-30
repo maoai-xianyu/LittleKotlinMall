@@ -75,11 +75,12 @@ dependencies {
     // banner
     api "com.youth.banner:banner:$banner_version"
 
+    api "com.github.shts:TriangleLabelView:$triangleLabelView_version"
+
 }
 repositories {
     google()
     jcenter()
-    mavenCentral()
 }
 
 // 方案二

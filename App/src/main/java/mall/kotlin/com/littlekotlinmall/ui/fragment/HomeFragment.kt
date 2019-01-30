@@ -22,6 +22,13 @@ class HomeFragment : BaseUIFragment() {
     }
 
     override fun initView() {
+
+        initBanner()
+        initNews()
+    }
+
+
+    fun initBanner() {
         //设置banner样式
         //mHomeBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
         //设置图片加载器
@@ -40,6 +47,12 @@ class HomeFragment : BaseUIFragment() {
         mHomeBanner.setIndicatorGravity(BannerConfig.RIGHT)
         //banner设置方法全部调用完毕时最后调用
         mHomeBanner.start()
+    }
+
+    fun initNews() {
+        // 公告
+        mNewsFlipperView.setData(arrayOf("夏日炎炎，第一波福利还有30秒到达战场", "新用户立领1000元优惠券"))
+
     }
 
     override fun start() {

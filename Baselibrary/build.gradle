@@ -74,8 +74,10 @@ dependencies {
     api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar_version"
     // banner
     api "com.youth.banner:banner:$banner_version"
-
+    // 折扣
     api "com.github.shts:TriangleLabelView:$triangleLabelView_version"
+    // 画廊
+    api "com.github.crosswall:Android-Coverflow:$android_coverflow_version"
 
 }
 repositories {

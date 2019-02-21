@@ -17,7 +17,7 @@ import timber.log.Timber
  * author:  zhangkun .
  * date:    on 2018/11/2.
  */
-class BaseApplication : Application() {
+open class BaseApplication : Application() {
 
     lateinit var appComponent: AppComponent
 

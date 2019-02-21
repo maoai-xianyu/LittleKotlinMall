@@ -13,6 +13,7 @@ import java.util.*
 class MainActivity : BaseUIActivity() {
 
 
+    //Fragment 栈管理
     private val mStack = Stack<Fragment>()
 
     private val mHomeFragment by lazy { HomeFragment() }
@@ -28,6 +29,8 @@ class MainActivity : BaseUIActivity() {
 
     @SuppressLint("CommitTransaction")
     override fun initView() {
+
+
         mBottomNavBar.checkMsgBadge(false)
         mBottomNavBar.checkCartBadge(20)
 

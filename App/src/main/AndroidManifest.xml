@@ -3,6 +3,7 @@
     package="mall.kotlin.com.littlekotlinmall">
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"

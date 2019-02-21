@@ -9,6 +9,8 @@ import mall.kotlin.com.baselibrary.widgets.BannerImageLoader
 import mall.kotlin.com.littlekotlinmall.R
 import mall.kotlin.com.littlekotlinmall.commom.*
 import mall.kotlin.com.littlekotlinmall.ui.adapter.HomeDiscountAdapter
+import mall.kotlin.com.littlekotlinmall.ui.adapter.TopicAdapter
+import me.crosswall.lib.coverflow.CoverFlow
 
 
 /**
@@ -25,6 +27,7 @@ class HomeFragment : BaseUIFragment() {
         initBanner()
         initNews()
         initDiscount()
+        initTopic()
     }
 
 
@@ -69,6 +72,23 @@ class HomeFragment : BaseUIFragment() {
         )
 
     }
+
+    /*
+        初始化主题
+     */
+    private fun initTopic() {
+        //话题
+        mTopicPager.adapter = TopicAdapter(context!!, listOf(HOME_TOPIC_ONE, HOME_TOPIC_TWO, HOME_TOPIC_THREE, HOME_TOPIC_FOUR, HOME_TOPIC_FIVE))
+        mTopicPager.currentItem = 1
+        mTopicPager.offscreenPageLimit = 5
+
+        CoverFlow.Builder().with(mTopicPager)
+                .scale(0.3f)
+                .pagerMargin(-30.0f)
+                .spaceSize(0.0f)
+                .build()
+    }
+
 
     override fun start() {
 

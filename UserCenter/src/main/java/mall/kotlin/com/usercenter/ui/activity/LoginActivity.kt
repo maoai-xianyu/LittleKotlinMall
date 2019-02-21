@@ -18,7 +18,6 @@ import org.jetbrains.anko.toast
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 
-
     override fun setView(): Int {
         return R.layout.activity_login
     }
@@ -67,7 +66,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
         toast("登录成功")
         // 存储
         UserPrefsUtils.putUserInfo(result)
-        startActivity<UserInfoActivity>()
+        finish()
     }
 
 }

@@ -20,6 +20,7 @@ abstract class BaseUIActivity : BaseActivity(), BaseView {
         this.setContentView(this.setView())
         initView()
         setListener()
+        start()
         mLoadingDialog = ProgressLoading.create(this)
     }
 
@@ -37,6 +38,10 @@ abstract class BaseUIActivity : BaseActivity(), BaseView {
     // 控件
     open fun initView() {
 
+    }
+
+    // 加载数据
+    open fun start() {
     }
 
     // 初始化事件

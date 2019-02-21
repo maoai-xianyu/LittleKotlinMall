@@ -34,6 +34,7 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         injectComponent()
         initView()
         setListener()
+        start()
         mLoadingDialog = ProgressLoading.create(this)
     }
 
@@ -51,6 +52,10 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     // 控件
     open fun initView() {
 
+    }
+
+    // 加载数据
+    open fun start() {
     }
 
     // 初始化事件

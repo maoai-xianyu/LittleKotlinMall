@@ -30,6 +30,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api "com.android.support:appcompat-v7:$android_support_version"
     // cardview
@@ -96,6 +97,9 @@ dependencies {
 
     // 画廊
     api "com.github.crosswall:Android-Coverflow:$android_coverflow_version"
+
+    // 加载框
+    api "com.github.Kennyc1012:MultiStateView:$multiStateView_version"
 
 }
 repositories {

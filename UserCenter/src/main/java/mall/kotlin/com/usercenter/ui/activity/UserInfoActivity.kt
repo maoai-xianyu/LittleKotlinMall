@@ -208,7 +208,10 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView, Tak
                 Logger.d("info $info")
                 Logger.json(response.toString())
                 mRemoteFileUrl = BaseConstant.IMAGE_SERVER_ADDRESS + response?.get("hash")
-                Logger.d("mRemoteFileUrl $mRemoteFileUrl")
+                Logger.d("mRemoteFileUrl 成功后 $mRemoteFileUrl")
+                // 修改项目种的头像，用以显示
+                mRemoteFileUrl = "https://kotlin-mall-1252364497.cos.ap-chengdu.myqcloud.com/maoai_xianyu.png"
+                Logger.d("mRemoteFileUrl 成功后从新赋值，目前7牛有问题 $mRemoteFileUrl")
                 GlideUtils.loadUrlImage(this@UserInfoActivity, mRemoteFileUrl!!, mUserIconIv)
             }
         }, null)

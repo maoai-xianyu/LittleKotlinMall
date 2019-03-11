@@ -10,7 +10,6 @@ import mall.kotlin.com.usercenter.injection.component.DaggerUserComponent
 import mall.kotlin.com.usercenter.injection.module.UserModule
 import mall.kotlin.com.usercenter.presenter.RegisterPresenter
 import mall.kotlin.com.usercenter.presenter.view.RegisterView
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
@@ -61,9 +60,8 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
 
     override fun onRegisterResult(result: String) {
         toast(result)
+        finish()
         //startActivity(intentFor<TestActivity>("id" to 5))
-        if (result == "注册成功")
-            startActivity<TestActivity>("id" to 10)
     }
 
     override fun onBackPressed() {

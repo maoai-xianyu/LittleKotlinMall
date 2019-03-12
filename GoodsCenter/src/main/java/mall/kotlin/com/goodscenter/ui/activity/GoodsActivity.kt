@@ -52,7 +52,11 @@ class GoodsActivity : BaseMvpActivity<GoodsPresenter>(), GoodsView, BGARefreshLa
 
     override fun start() {
         mMultiStateView.startLoading()
-        mPresenter.getGoodsList(intent.getIntExtra(GoodsConstant.KEY_CATEGORY_ID, 1), mCurrentPage)
+        if (intent.getIntExtra(GoodsConstant.KEY_SEARCH_GOODS_TYPE, 0) != 0) {
+            mPresenter.getGoodsListByKeyword(intent.getStringExtra(GoodsConstant.KEY_GOODS_KEYWORD), mCurrentPage)
+        } else {
+            mPresenter.getGoodsList(intent.getIntExtra(GoodsConstant.KEY_CATEGORY_ID, 1), mCurrentPage)
+        }
     }
 
     override fun setListener() {
@@ -81,9 +85,9 @@ class GoodsActivity : BaseMvpActivity<GoodsPresenter>(), GoodsView, BGARefreshLa
         mRefreshLayout.endRefreshing()
         if (result != null && result.size > 0) {
             mMaxPage = result[0].maxPage
-            if (mCurrentPage == 1){
+            if (mCurrentPage == 1) {
                 goodsAdapter.setData(result)
-            }else{
+            } else {
                 goodsAdapter.dataList.addAll(result)
                 goodsAdapter.notifyDataSetChanged()
             }

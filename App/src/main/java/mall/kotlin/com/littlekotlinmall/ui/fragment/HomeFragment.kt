@@ -4,13 +4,16 @@ import android.support.v7.widget.LinearLayoutManager
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
+import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.fragment.BaseUIFragment
 import mall.kotlin.com.baselibrary.widgets.BannerImageLoader
+import mall.kotlin.com.goodscenter.ui.activity.SearchGoodsActivity
 import mall.kotlin.com.littlekotlinmall.R
 import mall.kotlin.com.littlekotlinmall.commom.*
 import mall.kotlin.com.littlekotlinmall.ui.adapter.HomeDiscountAdapter
 import mall.kotlin.com.littlekotlinmall.ui.adapter.TopicAdapter
 import me.crosswall.lib.coverflow.CoverFlow
+import org.jetbrains.anko.support.v4.startActivity
 
 
 /**
@@ -28,6 +31,13 @@ class HomeFragment : BaseUIFragment() {
         initNews()
         initDiscount()
         initTopic()
+    }
+
+    override fun setListener() {
+        mSearchEt.onClick {
+            startActivity<SearchGoodsActivity>()
+        }
+
     }
 
 

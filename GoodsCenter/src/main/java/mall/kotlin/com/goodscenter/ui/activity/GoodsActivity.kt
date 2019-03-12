@@ -17,6 +17,7 @@ import mall.kotlin.com.goodscenter.injection.module.GoodsModule
 import mall.kotlin.com.goodscenter.presenter.GoodsPresenter
 import mall.kotlin.com.goodscenter.presenter.view.GoodsView
 import mall.kotlin.com.goodscenter.ui.adapter.GoodsAdapter
+import org.jetbrains.anko.startActivity
 
 /**
  * author:  zhangkun .
@@ -62,8 +63,8 @@ class GoodsActivity : BaseMvpActivity<GoodsPresenter>(), GoodsView, BGARefreshLa
     override fun setListener() {
         goodsAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Goods> {
             override fun onItemClick(item: Goods, position: Int) {
+                startActivity<GoodsDetailActivity>(GoodsConstant.KEY_GOODS_ID to item.id)
             }
-
         })
 
     }

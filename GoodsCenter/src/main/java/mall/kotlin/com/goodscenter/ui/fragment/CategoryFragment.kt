@@ -10,13 +10,16 @@ import mall.kotlin.com.baselibrary.ext.startLoading
 import mall.kotlin.com.baselibrary.ui.adapter.BaseRecyclerViewAdapter
 import mall.kotlin.com.baselibrary.ui.fragment.BaseMvpFragment
 import mall.kotlin.com.goodscenter.R
+import mall.kotlin.com.goodscenter.common.GoodsConstant
 import mall.kotlin.com.goodscenter.data.protocol.Category
 import mall.kotlin.com.goodscenter.injection.component.DaggerCategoryComponent
 import mall.kotlin.com.goodscenter.injection.module.CategoryModule
 import mall.kotlin.com.goodscenter.presenter.CategoryPresenter
 import mall.kotlin.com.goodscenter.presenter.view.CategoryView
+import mall.kotlin.com.goodscenter.ui.activity.GoodsActivity
 import mall.kotlin.com.goodscenter.ui.adapter.SecondCategoryAdapter
 import mall.kotlin.com.goodscenter.ui.adapter.TopCategoryAdapter
+import org.jetbrains.anko.support.v4.startActivity
 
 /**
  * authorhangkun .
@@ -59,7 +62,7 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
         secondAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Category> {
             override fun onItemClick(item: Category, position: Int) {
                 Logger.d("点击")
-
+                startActivity<GoodsActivity>(GoodsConstant.KEY_CATEGORY_ID to item.id)
             }
         })
 

@@ -17,12 +17,13 @@ buildscript {
     ext.alert_view_view='1.0.3'
     ext.timber_version='4.7.1'
     ext.logger_version='2.2.0'
-    ext.qiniu_version='7.3.+'
+    ext.qiniu_version='7.3.15'
     ext.bottom_navigation_bar_version='2.1.0'
     ext.banner_version='1.4.10'
     ext.triangleLabelView_version='1.1.2'
     ext.android_coverflow_version='release-v1.0.5'
     ext.multiStateView_version='1.3.2'
+    ext.bga_refreshlayout_version='1.1.8@aar'
 
     repositories {
         google()

@@ -33,9 +33,9 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         initActivityInjection()
         injectComponent()
         initView()
+        mLoadingDialog = ProgressLoading.create(this)
         setListener()
         start()
-        mLoadingDialog = ProgressLoading.create(this)
     }
 
     open fun beforeOnCreate() {

@@ -101,6 +101,9 @@ dependencies {
     // 加载框
     api "com.github.Kennyc1012:MultiStateView:$multiStateView_version"
 
+    // 上拉加载和下拉刷新
+    api "cn.bingoogolapple:bga-refreshlayout:$bga_refreshlayout_version"
+
 }
 repositories {
     google()

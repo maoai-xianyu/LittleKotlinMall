@@ -14,6 +14,8 @@ interface GoodsService {
 
     fun getGoodsListByKeyword(keyword: String, pageNo: Int): Observable<MutableList<Goods>?>
 
+    fun getGoodsDetail(goodsId: Int): Observable<Goods>
+
 
 
 }

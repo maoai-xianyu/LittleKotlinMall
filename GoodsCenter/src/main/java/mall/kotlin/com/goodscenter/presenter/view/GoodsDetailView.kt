@@ -8,5 +8,5 @@ import mall.kotlin.com.goodscenter.data.protocol.Goods
  * date:    on 2018/10/25.
  */
 interface GoodsDetailView : BaseView {
-    fun onGetGoodsListResult(result: MutableList<Goods>?)
+    fun onGetGoodsDetailResult(result: Goods)
 }

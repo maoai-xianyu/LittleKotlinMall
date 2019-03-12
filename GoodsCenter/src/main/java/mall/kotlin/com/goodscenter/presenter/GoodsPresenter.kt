@@ -15,7 +15,7 @@ import javax.inject.Inject
 class GoodsPresenter @Inject constructor() : BasePresenter<GoodsView>() {
 
     @Inject
-    lateinit var categoryService: GoodsService
+    lateinit var goodsService: GoodsService
 
     fun getGoodsList(categoryId: Int, pageNo: Int) {
 
@@ -26,7 +26,7 @@ class GoodsPresenter @Inject constructor() : BasePresenter<GoodsView>() {
             return
         }
         mView.showLoading()
-        categoryService.getGoodsList(categoryId, pageNo)
+        goodsService.getGoodsList(categoryId, pageNo)
                 .execute(object : BaseSubscriber<MutableList<Goods>?>(mView) {
                     override fun onNext(t: MutableList<Goods>?) {
                         mView.onGetGoodsListResult(t)
@@ -40,7 +40,7 @@ class GoodsPresenter @Inject constructor() : BasePresenter<GoodsView>() {
         }
 
         mView.showLoading()
-        categoryService.getGoodsListByKeyword(keyword, pageNo)
+        goodsService.getGoodsListByKeyword(keyword, pageNo)
                 .execute(object : BaseSubscriber<MutableList<Goods>?>(mView) {
                     override fun onNext(t: MutableList<Goods>?) {
                         mView.onGetGoodsListResult(t)

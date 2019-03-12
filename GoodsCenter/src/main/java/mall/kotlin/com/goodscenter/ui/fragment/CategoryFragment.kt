@@ -5,6 +5,8 @@ import android.support.v7.widget.LinearLayoutManager
 import com.kennyc.view.MultiStateView
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_category.*
+import mall.kotlin.com.baselibrary.ext.setVisible
+import mall.kotlin.com.baselibrary.ext.startLoading
 import mall.kotlin.com.baselibrary.ui.adapter.BaseRecyclerViewAdapter
 import mall.kotlin.com.baselibrary.ui.fragment.BaseMvpFragment
 import mall.kotlin.com.goodscenter.R
@@ -67,9 +69,11 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
         loadData()
     }
 
-    private fun loadData(parentId:Int = 0){
+    private fun loadData(parentId: Int = 0) {
+        if (parentId != 0) {
+            mMultiStateView.startLoading()
+        }
         mPresenter.getCategory(parentId)
-
     }
 
     override fun injectComponent() {
@@ -82,17 +86,24 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
     }
 
     override fun onGetCategoryResult(result: MutableList<Category>?) {
-
-        result?.let {
+        if (result != null && result.size > 0) {
             if (result[0].parentId == 0) {
                 result[0].isSelected = true
                 topAdapter.setData(result)
                 loadData(result[0].id)
             } else {
+                mTopCategoryIv.setVisible(true)
+                mCategoryTitleTv.setVisible(true)
                 secondAdapter.setData(result)
                 mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
             }
+        } else {
+            mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
+            mTopCategoryIv.setVisible(false)
+            mCategoryTitleTv.setVisible(false)
+
         }
+
 
     }
 }

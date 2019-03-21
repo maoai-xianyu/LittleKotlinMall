@@ -105,6 +105,9 @@ dependencies {
     // 上拉加载和下拉刷新
     api "cn.bingoogolapple:bga-refreshlayout:$bga_refreshlayout_version"
 
+    // 发送消息
+    api "com.eightbitlab:rxbus:$rxbus_version"
+
 }
 repositories {
     google()

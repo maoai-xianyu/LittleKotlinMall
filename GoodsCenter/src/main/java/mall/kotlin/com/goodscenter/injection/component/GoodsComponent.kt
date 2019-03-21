@@ -5,6 +5,7 @@ import mall.kotlin.com.baselibrary.injection.PerComponentScope
 import mall.kotlin.com.baselibrary.injection.component.ActivityComponent
 import mall.kotlin.com.goodscenter.injection.module.GoodsModule
 import mall.kotlin.com.goodscenter.ui.activity.GoodsActivity
+import mall.kotlin.com.goodscenter.ui.fragment.GoodsDetailTabOneFragment
 
 /**
  * author:  zhangkun .
@@ -17,4 +18,5 @@ import mall.kotlin.com.goodscenter.ui.activity.GoodsActivity
 )
 interface GoodsComponent {
     fun inject(activity: GoodsActivity)
+    fun inject(fragment: GoodsDetailTabOneFragment)
 }

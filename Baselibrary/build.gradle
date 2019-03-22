@@ -108,6 +108,14 @@ dependencies {
     // 发送消息
     api "com.eightbitlab:rxbus:$rxbus_version"
 
+    // 购物车商品数量、增加和减少控制按钮。
+    api "ren.qinc.numberbutton:numberbutton:$numberbutton_version"
+    // 单选，多选，多行展开缩回，tag高度自定义
+    api "com.github.hymanme.tagflowlayout:tagflowlayout:$tagflowlayout_version"
+
+    //FlowLayout
+    api "com.hyman:flowlayout-lib:$flowlayout_version"
+
 }
 repositories {
     google()

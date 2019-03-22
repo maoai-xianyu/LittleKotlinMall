@@ -1,9 +1,11 @@
 package mall.kotlin.com.goodscenter.ui.fragment
 
+import android.view.Gravity
 import com.eightbitlab.rxbus.Bus
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
+import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.fragment.BaseMvpFragment
 import mall.kotlin.com.baselibrary.utils.YuanFenConverter
 import mall.kotlin.com.baselibrary.widgets.BannerImageLoader
@@ -15,6 +17,8 @@ import mall.kotlin.com.goodscenter.injection.component.DaggerGoodsComponent
 import mall.kotlin.com.goodscenter.injection.module.GoodsModule
 import mall.kotlin.com.goodscenter.presenter.GoodsDetailPresenter
 import mall.kotlin.com.goodscenter.presenter.view.GoodsDetailView
+import mall.kotlin.com.goodscenter.ui.activity.GoodsDetailActivity
+import mall.kotlin.com.goodscenter.widget.GoodsSkuPopView
 
 /**
  * authorhangkun .
@@ -23,15 +27,24 @@ import mall.kotlin.com.goodscenter.presenter.view.GoodsDetailView
 class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), GoodsDetailView {
 
 
+    private lateinit var mSkuPop: GoodsSkuPopView
+
     override fun setView(): Int {
         return R.layout.fragment_goods_detail_tab_one
     }
 
     override fun initView() {
         initBanner()
+        initSkuPop()
     }
 
+
     override fun setListener() {
+
+        mSkuView.onClick {
+            mSkuPop.showAtLocation((activity as GoodsDetailActivity).contentView,
+                    Gravity.BOTTOM and Gravity.CENTER_HORIZONTAL, 0, 0)
+        }
 
     }
 
@@ -67,6 +80,11 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
     }
 
+    private fun initSkuPop() {
+        mSkuPop = GoodsSkuPopView(activity!!)
+    }
+
+
     override fun onGetGoodsDetailResult(result: Goods) {
         //设置图片集合
         mGoodsDetailBanner.setImages(result.goodsBanner.split(","))
@@ -78,8 +96,15 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
         mSkuSelectedTv.text = result.goodsDefaultSku
 
+        Bus.send(GoodsDetailImageEvent(result.goodsDetailOne, result.goodsDetailTwo))
 
-        Bus.send(GoodsDetailImageEvent(result.goodsDetailOne,result.goodsDetailTwo))
+        loadSkuPop(result)
+    }
 
+    private fun loadSkuPop(result: Goods) {
+        mSkuPop.setGoodsIcon(result.goodsDefaultIcon)
+        mSkuPop.setGoodsCode(result.goodsCode)
+        mSkuPop.setGoodsPrice(result.goodsDefaultPrice)
+        mSkuPop.setSkuData(result.goodsSku)
     }
 }

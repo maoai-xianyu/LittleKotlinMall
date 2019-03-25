@@ -12,10 +12,13 @@ import kotlinx.android.synthetic.main.layout_sku_pop.view.*
 import mall.kotlin.com.baselibrary.ext.loadUrl
 import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.utils.YuanFenConverter
+import mall.kotlin.com.baselibrary.widgets.DefaultTextWatcher
 import mall.kotlin.com.goodscenter.R
 import mall.kotlin.com.goodscenter.common.GoodsConstant
 import mall.kotlin.com.goodscenter.data.protocol.GoodsSku
 import mall.kotlin.com.goodscenter.event.AddCartEvent
+import mall.kotlin.com.goodscenter.event.SkuChangedEvent
+import mall.kotlin.com.goodscenter.ext.getEditText
 
 /*
     商品SKU弹层
@@ -67,14 +70,14 @@ class GoodsSkuPopView(context: Activity) : PopupWindow(context), View.OnClickLis
         mRootView.mAddCartBtn.onClick(this)
 
         mRootView.mSkuCountBtn.setCurrentNumber(1)
-        /*mRootView.mSkuCountBtn.getEditText().addTextChangedListener(
+        mRootView.mSkuCountBtn.getEditText().addTextChangedListener(
                 object : DefaultTextWatcher(){
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                         Bus.send(SkuChangedEvent())
                     }
                 }
 
-        )*/
+        )
 
         mRootView.mAddCartBtn.onClick {
             Bus.send(AddCartEvent())

@@ -28,6 +28,8 @@ buildscript {
     ext.numberbutton_version='0.0.1'
     ext.tagflowlayout_version='0.3.0'
     ext.flowlayout_version='1.1.2'
+    ext.arouter_api_version='1.4.1'
+    ext.arouter_compiler_version='1.2.2'
 
     repositories {
         google()

@@ -1,10 +1,12 @@
 package mall.kotlin.com.usercenter.ui.activity
 
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_login.*
 import mall.kotlin.com.baselibrary.ext.enable
 import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
+import mall.kotlin.com.provider.router.RouterPath
 import mall.kotlin.com.usercenter.R
 import mall.kotlin.com.usercenter.data.protocol.UserInfo
 import mall.kotlin.com.usercenter.injection.component.DaggerUserComponent
@@ -15,6 +17,7 @@ import mall.kotlin.com.usercenter.utils.UserPrefsUtils
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
+@Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 

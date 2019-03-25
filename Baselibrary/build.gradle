@@ -19,6 +19,7 @@ android {
     }
 
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -115,6 +116,9 @@ dependencies {
 
     //FlowLayout
     api "com.hyman:flowlayout-lib:$flowlayout_version"
+
+    // arouter
+    api "com.alibaba:arouter-api:$arouter_api_version"
 
 }
 repositories {

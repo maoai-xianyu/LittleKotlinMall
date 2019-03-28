@@ -120,6 +120,9 @@ dependencies {
     // arouter
     api "com.alibaba:arouter-api:$arouter_api_version"
 
+    // badgeview
+    api "q.rorbin:badgeview:$badgeview_version"
+
 }
 repositories {
     google()

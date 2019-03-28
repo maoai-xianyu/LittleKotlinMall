@@ -1,5 +1,6 @@
 package mall.kotlin.com.goodscenter.ui.fragment
 
+import android.annotation.SuppressLint
 import android.view.Gravity
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
@@ -19,13 +20,13 @@ import mall.kotlin.com.goodscenter.data.protocol.Goods
 import mall.kotlin.com.goodscenter.event.AddCartEvent
 import mall.kotlin.com.goodscenter.event.GoodsDetailImageEvent
 import mall.kotlin.com.goodscenter.event.SkuChangedEvent
+import mall.kotlin.com.goodscenter.event.UpdateCartSizeEvent
 import mall.kotlin.com.goodscenter.injection.component.DaggerGoodsComponent
 import mall.kotlin.com.goodscenter.injection.module.GoodsModule
 import mall.kotlin.com.goodscenter.presenter.GoodsDetailPresenter
 import mall.kotlin.com.goodscenter.presenter.view.GoodsDetailView
 import mall.kotlin.com.goodscenter.ui.activity.GoodsDetailActivity
 import mall.kotlin.com.goodscenter.widget.GoodsSkuPopView
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * authorhangkun .
@@ -105,6 +106,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         mSkuPop = GoodsSkuPopView(activity!!)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initObserve() {
         Bus.observe<SkuChangedEvent>()
                 .subscribe {
@@ -163,9 +165,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
 
     override fun onAddCartResult(result: Int) {
-
-        toast("cart $result")
-
+        Bus.send(UpdateCartSizeEvent())
     }
 
     private fun addCart() {

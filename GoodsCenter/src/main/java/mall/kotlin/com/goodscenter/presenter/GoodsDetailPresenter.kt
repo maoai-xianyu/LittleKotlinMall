@@ -5,6 +5,7 @@ import mall.kotlin.com.baselibrary.presenter.BasePresenter
 import mall.kotlin.com.baselibrary.rx.BaseSubscriber
 import mall.kotlin.com.goodscenter.data.protocol.Goods
 import mall.kotlin.com.goodscenter.presenter.view.GoodsDetailView
+import mall.kotlin.com.goodscenter.service.CartService
 import mall.kotlin.com.goodscenter.service.GoodsService
 import javax.inject.Inject
 
@@ -17,6 +18,9 @@ class GoodsDetailPresenter @Inject constructor() : BasePresenter<GoodsDetailView
     @Inject
     lateinit var goodsService: GoodsService
 
+    @Inject
+    lateinit var cartService: CartService
+
     fun getGoodsDetail(goodsId: Int) {
         if (!checkNetWork()) {
             return
@@ -28,6 +32,21 @@ class GoodsDetailPresenter @Inject constructor() : BasePresenter<GoodsDetailView
                         mView.onGetGoodsDetailResult(t)
                     }
                 }, lifecycleProvider)
+    }
+
+    fun addCart(goodsId: Int, goodsDesc: String, goodsIcon: String,
+                goodsPrice: Long, goodsCount: Int, goodsSku: String){
+        if (!checkNetWork()) {
+            return
+        }
+        mView.showLoading()
+        cartService.addCart(goodsId,goodsDesc,goodsIcon,goodsPrice,goodsCount,goodsSku)
+                .execute(object : BaseSubscriber<Int>(mView) {
+                    override fun onNext(t: Int) {
+                        mView.onAddCartResult(t)
+                    }
+                }, lifecycleProvider)
+
     }
 
 }

@@ -1,13 +1,14 @@
 package mall.kotlin.com.goodscenter.ui.activity
 
 import android.support.design.widget.TabLayout
-import com.alibaba.android.arouter.launcher.ARouter
+import com.eightbitlab.rxbus.Bus
 import kotlinx.android.synthetic.main.activity_goods_detail.*
 import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.activity.BaseUIActivity
 import mall.kotlin.com.goodscenter.R
+import mall.kotlin.com.goodscenter.event.AddCartEvent
 import mall.kotlin.com.goodscenter.ui.adapter.GoodsDetailVpAdapter
-import mall.kotlin.com.provider.router.RouterPath
+import mall.kotlin.com.provider.common.afterLogin
 
 /**
  * author:  zhangkun .
@@ -33,8 +34,11 @@ class GoodsDetailActivity : BaseUIActivity() {
     override fun setListener() {
 
         mAddCartBtn.onClick {
-            ARouter.getInstance().build(RouterPath.UserCenter.PATH_LOGIN).navigation()
+            afterLogin {
+                Bus.send(AddCartEvent())
+            }
         }
     }
+
 
 }

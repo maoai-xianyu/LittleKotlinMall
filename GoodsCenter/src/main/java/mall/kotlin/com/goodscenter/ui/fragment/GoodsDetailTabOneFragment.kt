@@ -16,6 +16,7 @@ import mall.kotlin.com.baselibrary.widgets.BannerImageLoader
 import mall.kotlin.com.goodscenter.R
 import mall.kotlin.com.goodscenter.common.GoodsConstant
 import mall.kotlin.com.goodscenter.data.protocol.Goods
+import mall.kotlin.com.goodscenter.event.AddCartEvent
 import mall.kotlin.com.goodscenter.event.GoodsDetailImageEvent
 import mall.kotlin.com.goodscenter.event.SkuChangedEvent
 import mall.kotlin.com.goodscenter.injection.component.DaggerGoodsComponent
@@ -24,6 +25,7 @@ import mall.kotlin.com.goodscenter.presenter.GoodsDetailPresenter
 import mall.kotlin.com.goodscenter.presenter.view.GoodsDetailView
 import mall.kotlin.com.goodscenter.ui.activity.GoodsDetailActivity
 import mall.kotlin.com.goodscenter.widget.GoodsSkuPopView
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * authorhangkun .
@@ -36,6 +38,8 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
     private lateinit var mAnimationStart: Animation
     // SKU弹层退场动画
     private lateinit var mAnimationEnd: Animation
+
+    private var mCurGoods: Goods? = null
 
     override fun setView(): Int {
         return R.layout.fragment_goods_detail_tab_one
@@ -103,9 +107,15 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
     private fun initObserve() {
         Bus.observe<SkuChangedEvent>()
-                .subscribe { t: SkuChangedEvent ->
-                    mSkuSelectedTv.text = mSkuPop.getSelectSku() + GoodsConstant.SKU_SEPARATOR + mSkuPop.getSelectCount() + "件"
+                .subscribe {
+                    mSkuSelectedTv.text = mSkuPop.getSelectSku() +
+                            GoodsConstant.SKU_SEPARATOR + mSkuPop.getSelectCount() + "件"
+                }.registerInBus(this)
 
+
+        Bus.observe<AddCartEvent>()
+                .subscribe {
+                    addCart()
                 }.registerInBus(this)
     }
 
@@ -118,7 +128,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         mAnimationStart.duration = 500
         mAnimationStart.fillAfter = true
 
-        mAnimationEnd = ScaleAnimation(0.95f,1f, 0.95f, 1f,  Animation.RELATIVE_TO_SELF,
+        mAnimationEnd = ScaleAnimation(0.95f, 1f, 0.95f, 1f, Animation.RELATIVE_TO_SELF,
                 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
         mAnimationEnd.duration = 500
         mAnimationEnd.fillAfter = true
@@ -128,6 +138,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
 
 
     override fun onGetGoodsDetailResult(result: Goods) {
+        mCurGoods = result
         //设置图片集合
         mGoodsDetailBanner.setImages(result.goodsBanner.split(","))
         //banner设置方法全部调用完毕时最后调用
@@ -150,6 +161,19 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), Goods
         mSkuPop.setSkuData(result.goodsSku)
     }
 
+
+    override fun onAddCartResult(result: Int) {
+
+        toast("cart $result")
+
+    }
+
+    private fun addCart() {
+        mCurGoods?.let {
+            mPresenter.addCart(it.id, it.goodsDesc, it.goodsDefaultIcon,
+                    it.goodsDefaultPrice, mSkuPop.getSelectCount(), mSkuPop.getSelectSku())
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

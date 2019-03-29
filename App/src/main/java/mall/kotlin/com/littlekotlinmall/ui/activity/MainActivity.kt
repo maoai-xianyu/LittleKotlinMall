@@ -10,6 +10,7 @@ import mall.kotlin.com.baselibrary.ui.activity.BaseUIActivity
 import mall.kotlin.com.baselibrary.utils.AppPrefsUtils
 import mall.kotlin.com.goodscenter.common.GoodsConstant
 import mall.kotlin.com.goodscenter.event.UpdateCartSizeEvent
+import mall.kotlin.com.goodscenter.ui.fragment.CartFragment
 import mall.kotlin.com.goodscenter.ui.fragment.CategoryFragment
 import mall.kotlin.com.littlekotlinmall.R
 import mall.kotlin.com.littlekotlinmall.ui.fragment.HomeFragment
@@ -24,7 +25,7 @@ class MainActivity : BaseUIActivity() {
 
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
-    private val mCartFragment by lazy { HomeFragment() }
+    private val mCartFragment by lazy { CartFragment() }
     private val mMsgFragment by lazy { HomeFragment() }
     private val mMeFragment by lazy { MeFragment() }
 

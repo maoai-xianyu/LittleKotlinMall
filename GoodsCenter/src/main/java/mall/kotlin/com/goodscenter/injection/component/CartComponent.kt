@@ -4,6 +4,7 @@ import dagger.Component
 import mall.kotlin.com.baselibrary.injection.PerComponentScope
 import mall.kotlin.com.baselibrary.injection.component.ActivityComponent
 import mall.kotlin.com.goodscenter.injection.module.CartModule
+import mall.kotlin.com.goodscenter.ui.fragment.CartFragment
 
 /**
  * author:  zhangkun .
@@ -15,4 +16,5 @@ import mall.kotlin.com.goodscenter.injection.module.CartModule
         modules = [CartModule::class]
 )
 interface CartComponent {
+    fun inject(fragment: CartFragment)
 }

@@ -10,4 +10,5 @@ import mall.kotlin.com.goodscenter.data.protocol.CartGoods
 interface CartListView : BaseView {
     fun onGetCartListResult(result: MutableList<CartGoods>?)
     fun onDeleteCartListResult(result: Boolean)
+    fun onSubmitCartListResult(result: Int)
 }

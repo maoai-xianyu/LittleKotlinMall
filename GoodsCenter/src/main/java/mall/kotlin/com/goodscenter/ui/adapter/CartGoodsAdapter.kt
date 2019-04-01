@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import com.eightbitlab.rxbus.Bus
 import kotlinx.android.synthetic.main.layout_cart_goods_item.view.*
 import mall.kotlin.com.baselibrary.ext.loadUrl
+import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.adapter.BaseRecyclerViewAdapter
 import mall.kotlin.com.baselibrary.utils.YuanFenConverter
 import mall.kotlin.com.baselibrary.widgets.DefaultTextWatcher
 import mall.kotlin.com.goodscenter.R
 import mall.kotlin.com.goodscenter.data.protocol.CartGoods
+import mall.kotlin.com.goodscenter.event.CartAllCheckedEvent
 import mall.kotlin.com.goodscenter.event.UpdateTotalPriceEvent
 import mall.kotlin.com.goodscenter.ext.getEditText
 
@@ -46,12 +48,12 @@ class CartGoodsAdapter(context: Context) : BaseRecyclerViewAdapter<CartGoods, Ca
         //商品数量
         holder.itemView.mGoodsCountBtn.setCurrentNumber(model.goodsCount)
         //选中按钮事件
-       /* holder.itemView.mCheckedCb.onClick {
+        holder.itemView.mCheckedCb.onClick {
             model.isSelected = holder.itemView.mCheckedCb.isChecked
             val isAllChecked = dataList.all {it.isSelected }
             Bus.send(CartAllCheckedEvent(isAllChecked))
             notifyDataSetChanged()
-        }*/
+        }
 
         //商品数量变化监听
         holder.itemView.mGoodsCountBtn.getEditText().addTextChangedListener(object: DefaultTextWatcher(){

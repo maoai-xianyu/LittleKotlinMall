@@ -136,6 +136,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         if (result != null && result.size > 0) {
             cartAdapter.setData(result)
             mHeaderBar.getRightView().setVisible(true)
+            mAllCheckedCb.isChecked = false
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
         } else {
             mHeaderBar.getRightView().setVisible(false)
@@ -183,6 +184,10 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     override fun onDestroy() {
         super.onDestroy()
         Bus.unregister(this)
+    }
+
+    fun setBackVisible(isVisible:Boolean){
+        mHeaderBar.getLeftView().setVisible(isVisible)
     }
 
 }

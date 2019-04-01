@@ -14,6 +14,7 @@ import mall.kotlin.com.goodscenter.event.AddCartEvent
 import mall.kotlin.com.goodscenter.event.UpdateCartSizeEvent
 import mall.kotlin.com.goodscenter.ui.adapter.GoodsDetailVpAdapter
 import mall.kotlin.com.provider.common.afterLogin
+import org.jetbrains.anko.startActivity
 import q.rorbin.badgeview.QBadgeView
 
 /**
@@ -48,11 +49,21 @@ class GoodsDetailActivity : BaseUIActivity() {
 
     override fun setListener() {
 
+
+        mLeftIv.onClick {
+            finish()
+        }
+
         mAddCartBtn.onClick {
             afterLogin {
                 Bus.send(AddCartEvent())
             }
         }
+
+        mEnterCartTv.onClick {
+            startActivity<CartActivity>()
+        }
+
     }
 
 

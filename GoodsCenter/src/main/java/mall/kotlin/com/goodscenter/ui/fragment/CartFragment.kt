@@ -7,6 +7,7 @@ import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
 import kotlinx.android.synthetic.main.fragment_cart.*
 import mall.kotlin.com.baselibrary.ext.onClick
+import mall.kotlin.com.baselibrary.ext.setVisible
 import mall.kotlin.com.baselibrary.ext.startLoading
 import mall.kotlin.com.baselibrary.ui.fragment.BaseMvpFragment
 import mall.kotlin.com.baselibrary.utils.YuanFenConverter
@@ -47,6 +48,11 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
     override fun setListener() {
 
+        mHeaderBar.getRightView().onClick {
+            refreshEditStatus()
+
+        }
+
         mAllCheckedCb.onClick {
             for (item in cartAdapter.dataList) {
                 item.isSelected = mAllCheckedCb.isChecked
@@ -54,6 +60,19 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
             cartAdapter.notifyDataSetChanged()
             updateTotalPrice()
         }
+
+    }
+
+    private fun refreshEditStatus() {
+        val isEditStatus = getString(R.string.common_edit) == mHeaderBar.getRightText()
+        mTotalPriceTv.setVisible(isEditStatus.not())
+        mSettleAccountsBtn.setVisible(isEditStatus.not())
+        mDeleteBtn.setVisible(isEditStatus)
+
+        mHeaderBar.getRightView().text = if (isEditStatus)
+            getString(R.string.common_complete)
+        else
+            getString(R.string.common_edit)
 
     }
 

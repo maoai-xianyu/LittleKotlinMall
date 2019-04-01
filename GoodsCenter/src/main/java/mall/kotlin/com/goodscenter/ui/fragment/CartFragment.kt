@@ -9,9 +9,11 @@ import kotlinx.android.synthetic.main.fragment_cart.*
 import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ext.startLoading
 import mall.kotlin.com.baselibrary.ui.fragment.BaseMvpFragment
+import mall.kotlin.com.baselibrary.utils.YuanFenConverter
 import mall.kotlin.com.goodscenter.R
 import mall.kotlin.com.goodscenter.data.protocol.CartGoods
 import mall.kotlin.com.goodscenter.event.CartAllCheckedEvent
+import mall.kotlin.com.goodscenter.event.UpdateTotalPriceEvent
 import mall.kotlin.com.goodscenter.injection.component.DaggerCartComponent
 import mall.kotlin.com.goodscenter.injection.module.CartModule
 import mall.kotlin.com.goodscenter.presenter.CartListPresenter
@@ -27,6 +29,8 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     private val cartAdapter by lazy {
         CartGoodsAdapter(context!!)
     }
+
+    private var mTotalPrice: Long = 0
 
 
     override fun setView(): Int {
@@ -48,6 +52,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
                 item.isSelected = mAllCheckedCb.isChecked
             }
             cartAdapter.notifyDataSetChanged()
+            updateTotalPrice()
         }
 
     }
@@ -82,12 +87,26 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
 
     private fun initObserve() {
-
-
         Bus.observe<CartAllCheckedEvent>()
                 .subscribe {
                     mAllCheckedCb.isChecked = it.isAllChecked
+                    updateTotalPrice()
                 }.registerInBus(this)
+
+        Bus.observe<UpdateTotalPriceEvent>()
+                .subscribe {
+                    updateTotalPrice()
+                }.registerInBus(this)
+    }
+
+
+    private fun updateTotalPrice() {
+        mTotalPrice = cartAdapter.dataList.filter { it.isSelected }
+                .map { it.goodsCount * it.goodsPrice }
+                .sum()
+
+        mTotalPriceTv.text = "合计${YuanFenConverter.changeF2YWithUnit(mTotalPrice)}"
+
     }
 
     override fun onDestroy() {

@@ -41,6 +41,7 @@ dependencies {
     }
     implementation project(":MessageCenter")
     implementation project(":GoodsCenter")
+    implementation project(":OrderCenter")
 }
 repositories {
     google()

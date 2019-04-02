@@ -24,7 +24,7 @@ import mall.kotlin.com.goodscenter.injection.module.CartModule
 import mall.kotlin.com.goodscenter.presenter.CartListPresenter
 import mall.kotlin.com.goodscenter.presenter.view.CartListView
 import mall.kotlin.com.goodscenter.ui.adapter.CartGoodsAdapter
-import mall.kotlin.com.provider.router.RouterPath
+import mall.kotlin.com.provider.common.ProviderConstant
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -158,12 +158,9 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     override fun onSubmitCartListResult(result: Int) {
         toast("订单   $result")
         ARouter.getInstance()
-                .build(RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
-                //.withInt(ProviderConstant.KEY_ORDER_ID, result)
+                .build("/orderCenter/confirm")
+                .withInt(ProviderConstant.KEY_ORDER_ID, result)
                 .navigation()
-
-        //ARouter.getInstance().build(RouterPath.UserCenter.PATH_LOGIN).navigation()
-
 
     }
 

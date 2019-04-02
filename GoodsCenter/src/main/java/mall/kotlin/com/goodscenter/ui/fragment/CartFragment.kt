@@ -2,6 +2,7 @@ package mall.kotlin.com.goodscenter.ui.fragment
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.kennyc.view.MultiStateView
@@ -23,6 +24,7 @@ import mall.kotlin.com.goodscenter.injection.module.CartModule
 import mall.kotlin.com.goodscenter.presenter.CartListPresenter
 import mall.kotlin.com.goodscenter.presenter.view.CartListView
 import mall.kotlin.com.goodscenter.ui.adapter.CartGoodsAdapter
+import mall.kotlin.com.provider.router.RouterPath
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -155,6 +157,13 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
 
     override fun onSubmitCartListResult(result: Int) {
         toast("订单   $result")
+        ARouter.getInstance()
+                .build(RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
+                //.withInt(ProviderConstant.KEY_ORDER_ID, result)
+                .navigation()
+
+        //ARouter.getInstance().build(RouterPath.UserCenter.PATH_LOGIN).navigation()
+
 
     }
 
@@ -186,7 +195,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
         Bus.unregister(this)
     }
 
-    fun setBackVisible(isVisible:Boolean){
+    fun setBackVisible(isVisible: Boolean) {
         mHeaderBar.getLeftView().setVisible(isVisible)
     }
 

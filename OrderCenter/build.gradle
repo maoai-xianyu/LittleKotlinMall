@@ -40,8 +40,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':Provider')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     // arouter
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"

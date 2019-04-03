@@ -25,7 +25,9 @@ import mall.kotlin.com.goodscenter.presenter.CartListPresenter
 import mall.kotlin.com.goodscenter.presenter.view.CartListView
 import mall.kotlin.com.goodscenter.ui.adapter.CartGoodsAdapter
 import mall.kotlin.com.provider.common.ProviderConstant
+import mall.kotlin.com.provider.router.RouterPath
 import org.jetbrains.anko.support.v4.toast
+import timber.log.Timber
 
 /**
  * author zhangkun .
@@ -156,9 +158,9 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     }
 
     override fun onSubmitCartListResult(result: Int) {
-        toast("订单   $result")
+        Timber.d("订单   $result")
         ARouter.getInstance()
-                .build("/orderCenter/confirm")
+                .build(RouterPath.OrderCenter.PATH_ORDER_CONFIRM)
                 .withInt(ProviderConstant.KEY_ORDER_ID, result)
                 .navigation()
 

@@ -1,6 +1,7 @@
 package mall.kotlin.com.baselibrary.ui.activity
 
 import android.os.Bundle
+import com.alibaba.android.arouter.launcher.ARouter
 import mall.kotlin.com.baselibrary.BaseApplication
 import mall.kotlin.com.baselibrary.injection.component.ActivityComponent
 import mall.kotlin.com.baselibrary.injection.component.DaggerActivityComponent
@@ -32,6 +33,8 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         this.setContentView(this.setView())
         initActivityInjection()
         injectComponent()
+        // aroute 注册
+        ARouter.getInstance().inject(this)
         initView()
         mLoadingDialog = ProgressLoading.create(this)
         setListener()

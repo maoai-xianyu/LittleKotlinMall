@@ -8,6 +8,7 @@ import mall.kotlin.com.baselibrary.ui.fragment.BaseUIFragment
 import mall.kotlin.com.baselibrary.utils.AppPrefsUtils
 import mall.kotlin.com.littlekotlinmall.R
 import mall.kotlin.com.littlekotlinmall.ui.activity.SettingActivity
+import mall.kotlin.com.ordercenter.ui.activity.ShipAddressActivity
 import mall.kotlin.com.provider.common.ProviderConstant
 import mall.kotlin.com.provider.common.isLogined
 import mall.kotlin.com.usercenter.ui.activity.LoginActivity
@@ -33,6 +34,7 @@ class MeFragment : BaseUIFragment(), View.OnClickListener {
         mUserIconIv.onClick(this)
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)
+        mAddressTv.onClick(this)
     }
 
 
@@ -68,6 +70,10 @@ class MeFragment : BaseUIFragment(), View.OnClickListener {
             }
             R.id.mSettingTv -> {
                 startActivity<SettingActivity>()
+            }
+
+            R.id.mAddressTv -> {
+                startActivity<ShipAddressActivity>()
             }
         }
 

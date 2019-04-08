@@ -8,8 +8,12 @@ import mall.kotlin.com.baselibrary.ui.fragment.BaseUIFragment
 import mall.kotlin.com.baselibrary.utils.AppPrefsUtils
 import mall.kotlin.com.littlekotlinmall.R
 import mall.kotlin.com.littlekotlinmall.ui.activity.SettingActivity
+import mall.kotlin.com.ordercenter.common.OrderConstant
+import mall.kotlin.com.ordercenter.common.OrderStatus
+import mall.kotlin.com.ordercenter.ui.activity.OrderActivity
 import mall.kotlin.com.ordercenter.ui.activity.ShipAddressActivity
 import mall.kotlin.com.provider.common.ProviderConstant
+import mall.kotlin.com.provider.common.afterLogin
 import mall.kotlin.com.provider.common.isLogined
 import mall.kotlin.com.usercenter.ui.activity.LoginActivity
 import mall.kotlin.com.usercenter.ui.activity.UserInfoActivity
@@ -35,6 +39,11 @@ class MeFragment : BaseUIFragment(), View.OnClickListener {
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)
         mAddressTv.onClick(this)
+        mWaitPayOrderTv.onClick(this)
+        mWaitConfirmOrderTv.onClick(this)
+        mCompleteOrderTv.onClick(this)
+        mAllOrderTv.onClick(this)
+
     }
 
 
@@ -74,6 +83,30 @@ class MeFragment : BaseUIFragment(), View.OnClickListener {
 
             R.id.mAddressTv -> {
                 startActivity<ShipAddressActivity>()
+            }
+
+
+            R.id.mWaitPayOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_PAY)
+                }
+            }
+
+            R.id.mWaitConfirmOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_CONFIRM)
+                }
+            }
+            R.id.mCompleteOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_COMPLETED)
+                }
+            }
+
+            R.id.mAllOrderTv -> {
+                afterLogin {
+                    startActivity<OrderActivity>()
+                }
             }
         }
 

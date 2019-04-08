@@ -69,7 +69,6 @@ class GoodsDetailActivity : BaseUIActivity() {
 
     private fun initObserve() {
 
-
         Bus.observe<UpdateCartSizeEvent>()
                 .subscribe {
                     setCartBadge()

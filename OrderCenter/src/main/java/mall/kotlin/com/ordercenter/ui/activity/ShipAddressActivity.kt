@@ -3,14 +3,17 @@ package mall.kotlin.com.ordercenter.ui.activity
 import android.support.v7.widget.LinearLayoutManager
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
+import com.eightbitlab.rxbus.Bus
 import com.kennyc.view.MultiStateView
 import kotlinx.android.synthetic.main.activity_address.*
 import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ext.startLoading
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
+import mall.kotlin.com.baselibrary.ui.adapter.BaseRecyclerViewAdapter
 import mall.kotlin.com.ordercenter.R
 import mall.kotlin.com.ordercenter.common.OrderConstant
 import mall.kotlin.com.ordercenter.data.protocol.ShipAddress
+import mall.kotlin.com.ordercenter.event.SelectAddressEvent
 import mall.kotlin.com.ordercenter.injection.component.DaggerShipAddressComponent
 import mall.kotlin.com.ordercenter.injection.module.ShipAddressModule
 import mall.kotlin.com.ordercenter.presenter.ShipAddressPresenter
@@ -82,6 +85,13 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
 
             }
         }
+
+        adapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<ShipAddress> {
+            override fun onItemClick(item: ShipAddress, position: Int) {
+                Bus.send(SelectAddressEvent(item))
+                finish()
+            }
+        })
     }
 
     override fun injectComponent() {

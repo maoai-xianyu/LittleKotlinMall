@@ -1,6 +1,7 @@
 package mall.kotlin.com.ordercenter.service.impl
 
 import mall.kotlin.com.baselibrary.ext.convert
+import mall.kotlin.com.baselibrary.ext.convertBoolean
 import mall.kotlin.com.ordercenter.data.protocol.Order
 import mall.kotlin.com.ordercenter.data.repository.OrderRepository
 import mall.kotlin.com.ordercenter.service.OrderService
@@ -18,5 +19,9 @@ class OrderServiceImpl @Inject constructor() : OrderService {
 
     override fun getOrderById(orderId: Int): Observable<Order> {
         return repository.getOrderById(orderId).convert()
+    }
+
+    override fun submitOrder(order: Order): Observable<Boolean> {
+        return repository.submitOrder(order).convertBoolean()
     }
 }

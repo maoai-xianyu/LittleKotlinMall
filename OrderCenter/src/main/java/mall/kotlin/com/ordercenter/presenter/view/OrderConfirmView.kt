@@ -9,4 +9,5 @@ import mall.kotlin.com.ordercenter.data.protocol.Order
  */
 interface OrderConfirmView : BaseView {
     fun onGetOrderByIdResult(result: Order)
+    fun onSubmitOrderResult(result: Boolean)
 }

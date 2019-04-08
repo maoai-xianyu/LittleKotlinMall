@@ -9,4 +9,6 @@ import rx.Observable
  */
 interface OrderService {
     fun getOrderById(orderId: Int): Observable<Order>
+
+    fun submitOrder(order: Order): Observable<Boolean>
 }

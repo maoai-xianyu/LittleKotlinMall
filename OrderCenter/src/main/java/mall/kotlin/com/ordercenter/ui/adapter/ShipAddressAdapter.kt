@@ -35,7 +35,10 @@ class ShipAddressAdapter(context: Context) : BaseRecyclerViewAdapter<ShipAddress
         holder.itemView.mSetDefaultTv.onClick {
 
             mOptClickListener?.let {
-
+                if (holder.itemView.mSetDefaultTv.isSelected) {
+                    return@onClick
+                }
+                model.shipIsDefault = 0
                 it.onSetDefault(model)
             }
         }

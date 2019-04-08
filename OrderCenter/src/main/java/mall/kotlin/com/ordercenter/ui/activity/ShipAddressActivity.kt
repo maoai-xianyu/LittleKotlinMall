@@ -57,6 +57,7 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
         adapter.mOptClickListener = object : ShipAddressAdapter.OnOptClickListener {
             override fun onSetDefault(address: ShipAddress) {
                 toast("设置默认")
+                mPresenter.setDefaultShipAddress(address)
             }
 
             override fun onEdit(address: ShipAddress) {
@@ -87,5 +88,10 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
         } else {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
         }
+    }
+
+    override fun onSetDefaultAddressResult(result: Boolean) {
+        toast("设置默认成功")
+        loadData()
     }
 }

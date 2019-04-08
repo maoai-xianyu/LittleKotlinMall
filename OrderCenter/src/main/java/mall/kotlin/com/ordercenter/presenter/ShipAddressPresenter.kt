@@ -34,4 +34,21 @@ class ShipAddressPresenter @Inject constructor() : BasePresenter<ShipAddressView
                 }, lifecycleProvider)
 
     }
+
+    fun setDefaultShipAddress(address: ShipAddress) {
+        /**
+         * 业务逻辑
+         */
+        if (!checkNetWork()) {
+            return
+        }
+        mView.showLoading()
+        shipAddressService.editShipAddress(address)
+                .execute(object : BaseSubscriber<Boolean>(mView) {
+                    override fun onNext(t: Boolean) {
+                        mView.onSetDefaultAddressResult(t)
+                    }
+                }, lifecycleProvider)
+
+    }
 }

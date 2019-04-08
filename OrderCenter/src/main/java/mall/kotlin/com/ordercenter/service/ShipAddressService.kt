@@ -24,4 +24,10 @@ interface ShipAddressService {
        修改收货地址
     */
     fun editShipAddress(address: ShipAddress): Observable<Boolean>
+
+
+    /*
+        删除收货地址
+     */
+    fun deleteShipAddress(id: Int): Observable<Boolean>
 }

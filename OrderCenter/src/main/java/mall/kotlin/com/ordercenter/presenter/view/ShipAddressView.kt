@@ -10,4 +10,6 @@ import mall.kotlin.com.ordercenter.data.protocol.ShipAddress
 interface ShipAddressView : BaseView {
     fun onGetShipAddressResult(result: MutableList<ShipAddress>?)
     fun onSetDefaultAddressResult(result: Boolean)
+    fun onDeleteShipAddressResult(result: Boolean)
+
 }

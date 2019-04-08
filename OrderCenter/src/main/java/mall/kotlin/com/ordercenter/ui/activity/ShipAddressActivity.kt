@@ -7,6 +7,7 @@ import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ext.startLoading
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
 import mall.kotlin.com.ordercenter.R
+import mall.kotlin.com.ordercenter.common.OrderConstant
 import mall.kotlin.com.ordercenter.data.protocol.ShipAddress
 import mall.kotlin.com.ordercenter.injection.component.DaggerShipAddressComponent
 import mall.kotlin.com.ordercenter.injection.module.ShipAddressModule
@@ -62,6 +63,7 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
 
             override fun onEdit(address: ShipAddress) {
                 toast("编辑")
+                startActivity<ShipAddressEditActivity>(OrderConstant.KEY_SHIP_ADDRESS to address)
 
             }
 

@@ -3,8 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch.Vertical.Common">
 
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/mMultiStateView"
+        style="@style/MultiStateStyle">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mOrderRv"
+            style="@style/commonRecyclerView"
+            android:layout_above="@+id/mBottomView" />
+    </com.kennyc.view.MultiStateView>
 </LinearLayout>

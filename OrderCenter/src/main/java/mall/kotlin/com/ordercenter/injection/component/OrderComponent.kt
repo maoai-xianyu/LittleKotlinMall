@@ -5,6 +5,7 @@ import mall.kotlin.com.baselibrary.injection.PerComponentScope
 import mall.kotlin.com.baselibrary.injection.component.ActivityComponent
 import mall.kotlin.com.ordercenter.injection.module.OrderModule
 import mall.kotlin.com.ordercenter.ui.activity.OrderConfirmActivity
+import mall.kotlin.com.ordercenter.ui.fragment.OrderFragment
 
 /**
  * author:  zhangkun .
@@ -17,4 +18,5 @@ import mall.kotlin.com.ordercenter.ui.activity.OrderConfirmActivity
 )
 interface OrderComponent {
     fun inject(activity: OrderConfirmActivity)
+    fun inject(fragment: OrderFragment)
 }

@@ -28,4 +28,12 @@ class OrderServiceImpl @Inject constructor() : OrderService {
     override fun getOrderList(orderStatus: Int): Observable<MutableList<Order>?> {
         return repository.getOrderList(orderStatus).convert()
     }
+
+    override fun cancelOrder(orderId: Int): Observable<Boolean> {
+        return repository.cancelOrder(orderId).convertBoolean()
+    }
+
+    override fun confirmOrder(orderId: Int): Observable<Boolean> {
+        return repository.confirmOrder(orderId).convertBoolean()
+    }
 }

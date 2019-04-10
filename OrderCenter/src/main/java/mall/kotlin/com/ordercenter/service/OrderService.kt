@@ -25,4 +25,15 @@ interface OrderService {
     fun getOrderList(orderStatus: Int): Observable<MutableList<Order>?>
 
 
+    /*
+       取消订单
+    */
+    fun cancelOrder(orderId: Int): Observable<Boolean>
+
+    /*
+        确认订单
+     */
+    fun confirmOrder(orderId: Int): Observable<Boolean>
+
+
 }

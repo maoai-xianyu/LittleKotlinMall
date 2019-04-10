@@ -2,6 +2,8 @@ package mall.kotlin.com.ordercenter.ui.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.bigkoo.alertview.AlertView
+import com.bigkoo.alertview.OnItemClickListener
 import com.kennyc.view.MultiStateView
 import kotlinx.android.synthetic.main.fragment_order.*
 import mall.kotlin.com.baselibrary.ext.startLoading
@@ -55,10 +57,13 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
 
                     OrderConstant.OPT_ORDER_CONFIRM -> {
                         toast("确认")
+                        mPresenter.confirmOrder(order.id)
                     }
 
                     OrderConstant.OPT_ORDER_CANCEL -> {
                         toast("取消")
+                        showCancelDialog(order)
+
                     }
                 }
             }
@@ -66,6 +71,16 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
 
     }
 
+    private fun showCancelDialog(order: Order) {
+        AlertView("取消订单", "确定取消订单么？",
+                "取消", null, arrayOf("确定"),
+                context, AlertView.Style.Alert,
+                OnItemClickListener { o, position ->
+                    if (position == 0) {
+                        mPresenter.cancelOrder(order.id)
+                    }
+                }).show()
+    }
 
     override fun start() {
         loadData()
@@ -93,5 +108,16 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
         } else {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
         }
+    }
+
+    override fun onConfirmOrderResult(result: Boolean) {
+        toast("确认收货成功")
+        loadData()
+
+    }
+
+    override fun onCancelOrderResult(result: Boolean) {
+        toast("取消订单成功")
+        loadData()
     }
 }

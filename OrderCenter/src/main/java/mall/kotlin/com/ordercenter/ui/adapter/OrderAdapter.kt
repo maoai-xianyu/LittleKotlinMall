@@ -1,6 +1,7 @@
 package mall.kotlin.com.ordercenter.ui.adapter
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +51,7 @@ class OrderAdapter(context: Context) : BaseRecyclerViewAdapter<Order, OrderAdapt
         } else {
             holder.itemView.mSingleGoodsView.setVisible(false)
             holder.itemView.mMultiGoodsView.setVisible(true)
+            holder.itemView.mMultiGoodsView.removeAllViews()
             for (orderGoods in model.orderGoodsList) {
                 val imageView = ImageView(mContext)
                 val lp = ViewGroup.MarginLayoutParams(mContext.dip(60.0f),
@@ -66,14 +68,28 @@ class OrderAdapter(context: Context) : BaseRecyclerViewAdapter<Order, OrderAdapt
 
         when (model.orderStatus) {
             OrderStatus.ORDER_WAIT_PAY -> {
+                holder.itemView.mOrderStatusNameTv.text = "待支付"
+                holder.itemView.mOrderStatusNameTv.setTextColor(ContextCompat.getColor(mContext, R.color.common_red))
                 setOptVisible(holder, false)
             }
             OrderStatus.ORDER_WAIT_CONFIRM -> {
+                holder.itemView.mOrderStatusNameTv.text = "待收货"
+                holder.itemView.mOrderStatusNameTv.setTextColor(ContextCompat.getColor(mContext, R.color.common_blue))
                 setOptVisible(holder, confirmVisible = true, waitPayVisible = false)
             }
-            else -> {
+
+            OrderStatus.ORDER_COMPLETED -> {
+                holder.itemView.mOrderStatusNameTv.text = "已完成"
+                holder.itemView.mOrderStatusNameTv.setTextColor(ContextCompat.getColor(mContext, R.color.common_yellow))
                 setOptVisible(holder, confirmVisible = false, waitPayVisible = false, cancelVisible = false)
             }
+
+            OrderStatus.ORDER_CANCELED -> {
+                holder.itemView.mOrderStatusNameTv.text = "已取消"
+                holder.itemView.mOrderStatusNameTv.setTextColor(ContextCompat.getColor(mContext, R.color.common_gray))
+                setOptVisible(holder, confirmVisible = false, waitPayVisible = false, cancelVisible = false)
+            }
+
         }
 
         holder.itemView.mPayBtn.onClick {
@@ -100,6 +116,11 @@ class OrderAdapter(context: Context) : BaseRecyclerViewAdapter<Order, OrderAdapt
         holder.itemView.mConfirmBtn.setVisible(confirmVisible)
         holder.itemView.mPayBtn.setVisible(waitPayVisible)
         holder.itemView.mCancelBtn.setVisible(cancelVisible)
+        if (confirmVisible or waitPayVisible or cancelVisible) {
+            holder.itemView.mBottomView.setVisible(true)
+        } else {
+            holder.itemView.mBottomView.setVisible(false)
+        }
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)

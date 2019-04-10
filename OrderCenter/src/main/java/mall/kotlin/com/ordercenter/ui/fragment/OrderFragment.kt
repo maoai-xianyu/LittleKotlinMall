@@ -14,6 +14,7 @@ import mall.kotlin.com.ordercenter.injection.module.OrderModule
 import mall.kotlin.com.ordercenter.presenter.OrderListPresenter
 import mall.kotlin.com.ordercenter.presenter.view.OrderListView
 import mall.kotlin.com.ordercenter.ui.adapter.OrderAdapter
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * author:    zhangkun .
@@ -42,6 +43,26 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
     }
 
     override fun setListener() {
+
+        orderAdapter.listener = object : OrderAdapter.OnOptClickListener {
+            override fun onOptClick(optType: Int, order: Order) {
+                when (optType) {
+
+                    OrderConstant.OPT_ORDER_PAY -> {
+                        toast("支付")
+
+                    }
+
+                    OrderConstant.OPT_ORDER_CONFIRM -> {
+                        toast("确认")
+                    }
+
+                    OrderConstant.OPT_ORDER_CANCEL -> {
+                        toast("取消")
+                    }
+                }
+            }
+        }
 
     }
 

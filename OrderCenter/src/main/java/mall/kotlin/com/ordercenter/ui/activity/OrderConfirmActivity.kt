@@ -60,7 +60,6 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), OrderConf
         // 注册
         mOrderGoodsRv.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
         mOrderGoodsRv.adapter = mAdapter
-        updateAddressView()
         initObserve()
     }
 
@@ -127,6 +126,7 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), OrderConf
         mOrder = result
         mAdapter.setData(result.orderGoodsList)
         mTotalPriceTv.text = "合计：${YuanFenConverter.changeF2YWithUnit(result.totalPrice)}"
+        updateAddressView()
     }
 
     override fun onSubmitOrderResult(result: Boolean) {

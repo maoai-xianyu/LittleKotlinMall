@@ -7,6 +7,7 @@ import com.bigkoo.alertview.OnItemClickListener
 import com.kennyc.view.MultiStateView
 import kotlinx.android.synthetic.main.fragment_order.*
 import mall.kotlin.com.baselibrary.ext.startLoading
+import mall.kotlin.com.baselibrary.ui.adapter.BaseRecyclerViewAdapter
 import mall.kotlin.com.baselibrary.ui.fragment.BaseMvpFragment
 import mall.kotlin.com.ordercenter.R
 import mall.kotlin.com.ordercenter.common.OrderConstant
@@ -15,7 +16,10 @@ import mall.kotlin.com.ordercenter.injection.component.DaggerOrderComponent
 import mall.kotlin.com.ordercenter.injection.module.OrderModule
 import mall.kotlin.com.ordercenter.presenter.OrderListPresenter
 import mall.kotlin.com.ordercenter.presenter.view.OrderListView
+import mall.kotlin.com.ordercenter.ui.activity.OrderDetailActivity
 import mall.kotlin.com.ordercenter.ui.adapter.OrderAdapter
+import mall.kotlin.com.provider.common.ProviderConstant
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -63,11 +67,17 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
                     OrderConstant.OPT_ORDER_CANCEL -> {
                         toast("取消")
                         showCancelDialog(order)
-
                     }
                 }
             }
         }
+
+        orderAdapter.setOnItemClickListener(object : BaseRecyclerViewAdapter.OnItemClickListener<Order> {
+            override fun onItemClick(item: Order, position: Int) {
+                startActivity<OrderDetailActivity>(ProviderConstant.KEY_ORDER_ID to item.id)
+            }
+        })
+
 
     }
 

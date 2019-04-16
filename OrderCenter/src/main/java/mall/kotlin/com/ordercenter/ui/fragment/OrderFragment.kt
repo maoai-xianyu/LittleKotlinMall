@@ -2,6 +2,7 @@ package mall.kotlin.com.ordercenter.ui.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.kennyc.view.MultiStateView
@@ -19,6 +20,7 @@ import mall.kotlin.com.ordercenter.presenter.view.OrderListView
 import mall.kotlin.com.ordercenter.ui.activity.OrderDetailActivity
 import mall.kotlin.com.ordercenter.ui.adapter.OrderAdapter
 import mall.kotlin.com.provider.common.ProviderConstant
+import mall.kotlin.com.provider.router.RouterPath
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
@@ -56,6 +58,11 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
 
                     OrderConstant.OPT_ORDER_PAY -> {
                         toast("支付")
+                        ARouter.getInstance()
+                                .build(RouterPath.PaySDK.PATH_PAY)
+                                .withInt(ProviderConstant.KEY_ORDER_ID, order.id)
+                                .withLong(ProviderConstant.KEY_ORDER_PRICE, order.totalPrice)
+                                .navigation()
 
                     }
 

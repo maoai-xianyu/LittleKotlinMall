@@ -1,6 +1,7 @@
 package mall.kotlin.com.baselibrary.ui.activity
 
 import android.os.Bundle
+import com.alibaba.android.arouter.launcher.ARouter
 import mall.kotlin.com.baselibrary.presenter.view.BaseView
 import mall.kotlin.com.baselibrary.widgets.ProgressLoading
 import org.jetbrains.anko.toast
@@ -18,6 +19,8 @@ abstract class BaseUIActivity : BaseActivity(), BaseView {
         super.onCreate(savedInstanceState)
         this.getArgs(this.intent.extras)
         this.setContentView(this.setView())
+        // aroute 注册
+        ARouter.getInstance().inject(this)
         initView()
         setListener()
         start()

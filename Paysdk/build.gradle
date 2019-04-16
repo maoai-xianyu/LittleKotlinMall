@@ -41,7 +41,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation project(':Provider')
-    implementation (name: 'alipaySdk-15.6.0-20190226104053', ext: 'aar')
+    implementation files('libs/alipaySdk-20180601.jar')
+    //implementation (name: 'alipaySdk-15.6.0-20190226104053', ext: 'aar')
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     // arouter
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"

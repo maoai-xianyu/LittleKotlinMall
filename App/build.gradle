@@ -43,6 +43,7 @@ dependencies {
     implementation project(":MessageCenter")
     implementation project(":GoodsCenter")
     implementation project(":OrderCenter")
+    implementation project(":Paysdk")
 }
 repositories {
     google()

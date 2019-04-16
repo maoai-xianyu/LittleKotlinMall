@@ -19,4 +19,10 @@ object RouterPath {
         }
     }
 
+    class PaySDK {
+        companion object {
+            const val PATH_PAY= "/paySDK/pay"
+        }
+    }
+
 }

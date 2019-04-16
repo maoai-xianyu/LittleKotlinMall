@@ -7,6 +7,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
 
+        <activity android:name=".ui.activity.CashRegisterActivity"/>
+
+
+        <!-- 删除以下内容 从旧的 JAR SDK 迁移到 AAR SDK-->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <!-- 删除以上内容 -->
 
     </application>
 

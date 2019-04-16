@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Paysdk</string>
+
+    <string name="permission_already_granted">支付宝 SDK 已有所需的权限</string>
+    <string name="permission_rejected">无法获取支付宝 SDK 所需的权限, 请到系统设置开启</string>
+    <string name="permission_granted">支付宝 SDK 所需的权限已经正常获取</string>
 </resources>

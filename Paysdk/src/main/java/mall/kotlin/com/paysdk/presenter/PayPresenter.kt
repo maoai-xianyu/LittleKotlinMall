@@ -26,12 +26,31 @@ class PayPresenter @Inject constructor() : BasePresenter<PayView>() {
             return
         }
         mView.showLoading()
-        payService.getPaySign(orderId,totalPrice)
+        payService.getPaySign(orderId, totalPrice)
                 .execute(object : BaseSubscriber<String>(mView) {
                     override fun onNext(t: String) {
 
                         Timber.d("sign : $t")
                         mView.onGetSignResult(t)
+                    }
+                }, lifecycleProvider)
+
+    }
+
+    fun payOrder(orderId: Int) {
+        /**
+         * 业务逻辑
+         */
+        if (!checkNetWork()) {
+            return
+        }
+        mView.showLoading()
+        payService.payOrder(orderId)
+                .execute(object : BaseSubscriber<Boolean>(mView) {
+                    override fun onNext(t: Boolean) {
+
+                        Timber.d("sign : $t")
+                        mView.onPayOrderResult(t)
                     }
                 }, lifecycleProvider)
 

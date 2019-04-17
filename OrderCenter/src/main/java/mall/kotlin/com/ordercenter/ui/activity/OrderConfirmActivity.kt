@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import kotlinx.android.synthetic.main.activity_order_confirm.*
@@ -131,6 +132,13 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), OrderConf
 
     override fun onSubmitOrderResult(result: Boolean) {
         toast("订单提交成功")
+        ARouter.getInstance()
+                .build(RouterPath.PaySDK.PATH_PAY)
+                .withInt(ProviderConstant.KEY_ORDER_ID, mOrder!!.id)
+                .withLong(ProviderConstant.KEY_ORDER_PRICE, mOrder!!.totalPrice)
+                .navigation()
+
+        finish()
 
     }
 

@@ -8,4 +8,5 @@ import mall.kotlin.com.baselibrary.presenter.view.BaseView
  */
 interface PayView : BaseView {
     fun onGetSignResult(result: String)
+    fun onPayOrderResult(result: Boolean)
 }

@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alipay.sdk.app.EnvUtils
@@ -29,7 +30,7 @@ import timber.log.Timber
  * date:    on 2019/4/16.
  */
 @Route(path = RouterPath.PaySDK.PATH_PAY)
-class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView {
+class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView, View.OnClickListener {
 
 
     @Autowired(name = ProviderConstant.KEY_ORDER_ID)
@@ -52,16 +53,18 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView {
     override fun initView() {
         // 支付宝沙箱联调
         EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX)
-
+        updatePayType(true, false, false)
         mTotalPriceTv.text = YuanFenConverter.changeF2YWithUnit(mTotalPrice)
         requestPermission()
     }
 
     override fun setListener() {
 
-        mPayBtn.onClick {
-            mPresenter.getPaySign(mOrderId, mTotalPrice)
-        }
+        mPayBtn.onClick(this)
+
+        mAlipayTypeTv.onClick(this)
+        mWeixinTypeTv.onClick(this)
+        mBankCardTypeTv.onClick(this)
     }
 
     override fun injectComponent() {
@@ -72,26 +75,6 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView {
 
         mPresenter.mView = this
 
-    }
-
-    /**
-     * {resultStatus=9000, result={"alipay_trade_app_pay_response":{"code":"10000","msg":"Success","app_id":"2016072400104913","auth_app_id":"2016072400104913","charset":"utf-8","timestamp":"2019-04-16 20:15:15","out_trade_no":"1259","total_amount":"2.00","trade_no":"2019041622001495901000038757","seller_id":"2088102168712921"},"sign":"IzC9NNdWI0CedYe5T0bLsMiv5UVmAvAtpOIeMto+304rOAwK1e2uWEe84BMBSWh6b7Id67sr5rQZ1/fXbiqvG9K+eVQP/wuzx2Xa/gvk+OkLVheHTR8Q8ST3qhceznFehmqy2X7oBf8y+0H/CSH+OHCc8tdWJpS2tl5JwKb84SS+BXrVcA/zckjULjvsCJxWHtTXacUNwF0XdpnT9dH0w+XRQN3dQrRh6Xfj941zywEO0Yw6JQy7fTDOGCAn7/W0+wM3E/cFUe24xKyfvhC3bZB8xisn9Rs/TRAPkEl7NOnvAdgJqEvzDSMIn865L7C8Td3QANNywOyFe0VvGUDY7g==","sign_type":"RSA2"}, memo=处理成功}
-     */
-    override fun onGetSignResult(result: String) {
-        // 异步线程调用
-        doAsync {
-            val resultMap: Map<String, String> = PayTask(this@CashRegisterActivity).payV2(result, true)
-            Timber.d("resultMap $resultMap")
-            //沙箱联调环境账号  ggvpip3079@sandbox.com    密码 111111 支付密码  111111
-            uiThread {
-                if (resultMap["resultStatus"].equals("9000")) {
-                    toast("支付成功")
-                } else {
-                    toast("支付失败${resultMap["memo"]}")
-                }
-            }
-
-        }
     }
 
     /**
@@ -138,4 +121,54 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView {
         }
     }
 
+
+    /**
+     * {resultStatus=9000, result={"alipay_trade_app_pay_response":{"code":"10000","msg":"Success","app_id":"2016072400104913","auth_app_id":"2016072400104913","charset":"utf-8","timestamp":"2019-04-16 20:15:15","out_trade_no":"1259","total_amount":"2.00","trade_no":"2019041622001495901000038757","seller_id":"2088102168712921"},"sign":"IzC9NNdWI0CedYe5T0bLsMiv5UVmAvAtpOIeMto+304rOAwK1e2uWEe84BMBSWh6b7Id67sr5rQZ1/fXbiqvG9K+eVQP/wuzx2Xa/gvk+OkLVheHTR8Q8ST3qhceznFehmqy2X7oBf8y+0H/CSH+OHCc8tdWJpS2tl5JwKb84SS+BXrVcA/zckjULjvsCJxWHtTXacUNwF0XdpnT9dH0w+XRQN3dQrRh6Xfj941zywEO0Yw6JQy7fTDOGCAn7/W0+wM3E/cFUe24xKyfvhC3bZB8xisn9Rs/TRAPkEl7NOnvAdgJqEvzDSMIn865L7C8Td3QANNywOyFe0VvGUDY7g==","sign_type":"RSA2"}, memo=处理成功}
+     */
+    override fun onGetSignResult(result: String) {
+        // 异步线程调用
+        doAsync {
+            val resultMap: Map<String, String> = PayTask(this@CashRegisterActivity).payV2(result, true)
+            Timber.d("resultMap $resultMap")
+            //沙箱联调环境账号  ggvpip3079@sandbox.com    密码 111111 支付密码  111111
+            uiThread {
+                if (resultMap["resultStatus"].equals("9000")) {
+                    mPresenter.payOrder(mOrderId)
+                } else {
+                    toast("支付失败${resultMap["memo"]}")
+                }
+            }
+
+        }
+    }
+
+    override fun onPayOrderResult(result: Boolean) {
+        toast("支付成功")
+        finish()
+    }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.mAlipayTypeTv -> {
+                updatePayType(true, false, false)
+            }
+            R.id.mWeixinTypeTv -> {
+                updatePayType(false, true, false)
+            }
+
+            R.id.mBankCardTypeTv -> {
+                updatePayType(false, false, true)
+            }
+            R.id.mPayBtn -> {
+                mPresenter.getPaySign(mOrderId, mTotalPrice)
+            }
+        }
+
+    }
+
+    private fun updatePayType(isAliPay: Boolean, isWeixinPay: Boolean, isBankCardPay: Boolean) {
+        mAlipayTypeTv.isSelected = isAliPay
+        mWeixinTypeTv.isSelected = isWeixinPay
+        mBankCardTypeTv.isSelected = isBankCardPay
+    }
 }

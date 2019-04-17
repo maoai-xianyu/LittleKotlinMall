@@ -100,6 +100,11 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
     }
 
     override fun start() {
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         loadData()
     }
 

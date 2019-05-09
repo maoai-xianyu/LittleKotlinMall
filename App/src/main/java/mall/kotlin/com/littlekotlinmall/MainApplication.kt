@@ -1,5 +1,6 @@
 package mall.kotlin.com.littlekotlinmall
 
+import cn.jpush.android.api.JPushInterface
 import mall.kotlin.com.baselibrary.BaseApplication
 
 /*
@@ -10,8 +11,9 @@ class MainApplication: BaseApplication() {
         super.onCreate()
 
         //极光推送初始化
-        /*JPushInterface.setDebugMode(true)
-        JPushInterface.init(this)*/
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(this)
+
     }
 }
 

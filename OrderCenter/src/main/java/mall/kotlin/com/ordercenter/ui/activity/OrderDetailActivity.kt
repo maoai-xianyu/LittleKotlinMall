@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_order_detail.*
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
 import mall.kotlin.com.baselibrary.utils.YuanFenConverter
@@ -15,11 +16,13 @@ import mall.kotlin.com.ordercenter.presenter.OrderDetailPresenter
 import mall.kotlin.com.ordercenter.presenter.view.OrderDetailView
 import mall.kotlin.com.ordercenter.ui.adapter.OrderGoodsAdapter
 import mall.kotlin.com.provider.common.ProviderConstant
+import mall.kotlin.com.provider.router.RouterPath
 
 /**
  * author:    zhangkun .
  * date:    on 2019/4/2.
  */
+@Route(path = RouterPath.MessageCenter.PATH_MESSAGE_ORDER)
 class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), OrderDetailView {
 
     var mOrderId: Int = 0

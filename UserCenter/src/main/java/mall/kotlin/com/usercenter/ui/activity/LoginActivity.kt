@@ -1,11 +1,13 @@
 package mall.kotlin.com.usercenter.ui.activity
 
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_login.*
 import mall.kotlin.com.baselibrary.ext.enable
 import mall.kotlin.com.baselibrary.ext.onClick
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
+import mall.kotlin.com.provider.PushProvider
 import mall.kotlin.com.provider.router.RouterPath
 import mall.kotlin.com.usercenter.R
 import mall.kotlin.com.usercenter.data.protocol.UserInfo
@@ -20,6 +22,10 @@ import org.jetbrains.anko.toast
 @Route(path = RouterPath.UserCenter.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
+
+    @Autowired(name = RouterPath.MessageCenter.PATH_MESSAGE_PUSH)
+    @JvmField
+    var mPushProvider: PushProvider? = null
 
     override fun setView(): Int {
         return R.layout.activity_login
@@ -50,7 +56,8 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
             }
 
             R.id.mLoginBtn -> {
-                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
+                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), mPushProvider?.getPushId()
+                        ?: "")
             }
 
             R.id.mForgetPwdTv -> {

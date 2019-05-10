@@ -48,6 +48,10 @@ dependencies {
 
     implementation project(':Provider')
 
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //arouter
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
+
     api 'cn.jiguang.sdk:jpush:3.2.0'  // 此处以JPush 3.2.0 版本为例。
     api 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
 }

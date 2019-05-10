@@ -16,6 +16,7 @@ import mall.kotlin.com.littlekotlinmall.R
 import mall.kotlin.com.littlekotlinmall.ui.fragment.HomeFragment
 import mall.kotlin.com.littlekotlinmall.ui.fragment.MeFragment
 import mall.kotlin.com.messagecenter.ui.fragment.MessageFragment
+import mall.kotlin.com.provider.event.MessageBadgeEvent
 import java.util.*
 
 class MainActivity : BaseUIActivity() {
@@ -99,6 +100,13 @@ class MainActivity : BaseUIActivity() {
                 .subscribe {
                     loadCartSize()
                 }.registerInBus(this)
+
+        Bus.observe<MessageBadgeEvent>()
+                .subscribe { t: MessageBadgeEvent ->
+                    run { mBottomNavBar.checkMsgBadge(t.isVisible) }
+                }.registerInBus(this)
+
+
     }
 
     private fun loadCartSize() {

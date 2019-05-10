@@ -25,6 +25,13 @@ why
 2. 建立Provider -- 存放和业务相关的共用属性，事件，key值
 3. 建立UserCenter -- 用户模块
 
+
+## 服务器代码和数据库表结构
+
+[Kotlin_Server](https://github.com/maoai-xianyu/Kotlin_Server)
+
+
+
 ## 用户模块
 
 1. 注册功能

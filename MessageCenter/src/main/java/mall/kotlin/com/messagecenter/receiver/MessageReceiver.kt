@@ -42,7 +42,7 @@ class MessageReceiver : BroadcastReceiver() {
                 val extra = bundle.getString(JPushInterface.EXTRA_EXTRA)
                 val json = JSONObject(extra)
                 val orderId = json.getInt("orderId")
-                ARouter.getInstance().build(RouterPath.MessageCenter.PATH_MESSAGE_ORDER)
+                ARouter.getInstance().build(RouterPath.MessageCenterOrder.PATH_MESSAGE_ORDER)
                         .withInt(ProviderConstant.KEY_ORDER_ID, orderId)
                         .navigation()
 

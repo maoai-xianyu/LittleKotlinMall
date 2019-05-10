@@ -22,7 +22,7 @@ import mall.kotlin.com.provider.router.RouterPath
  * author:    zhangkun .
  * date:    on 2019/4/2.
  */
-@Route(path = RouterPath.MessageCenter.PATH_MESSAGE_ORDER)
+@Route(path = RouterPath.MessageCenterOrder.PATH_MESSAGE_ORDER)
 class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), OrderDetailView {
 
     var mOrderId: Int = 0

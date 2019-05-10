@@ -15,6 +15,7 @@ import mall.kotlin.com.goodscenter.ui.fragment.CategoryFragment
 import mall.kotlin.com.littlekotlinmall.R
 import mall.kotlin.com.littlekotlinmall.ui.fragment.HomeFragment
 import mall.kotlin.com.littlekotlinmall.ui.fragment.MeFragment
+import mall.kotlin.com.messagecenter.ui.fragment.MessageFragment
 import java.util.*
 
 class MainActivity : BaseUIActivity() {
@@ -26,7 +27,7 @@ class MainActivity : BaseUIActivity() {
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
     private val mCartFragment by lazy { CartFragment() }
-    private val mMsgFragment by lazy { HomeFragment() }
+    private val mMsgFragment by lazy { MessageFragment() }
     private val mMeFragment by lazy { MeFragment() }
 
 

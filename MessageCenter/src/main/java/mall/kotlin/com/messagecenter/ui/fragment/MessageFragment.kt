@@ -1,6 +1,7 @@
 package mall.kotlin.com.messagecenter.ui.fragment
 
 import android.support.v7.widget.LinearLayoutManager
+import com.eightbitlab.rxbus.Bus
 import com.kennyc.view.MultiStateView
 import kotlinx.android.synthetic.main.fragment_message.*
 import mall.kotlin.com.baselibrary.ext.startLoading
@@ -12,6 +13,7 @@ import mall.kotlin.com.messagecenter.injection.module.MessageModule
 import mall.kotlin.com.messagecenter.presenter.MessagePresenter
 import mall.kotlin.com.messagecenter.presenter.view.MessageView
 import mall.kotlin.com.messagecenter.ui.adapter.MessageAdapter
+import mall.kotlin.com.provider.event.MessageBadgeEvent
 
 /**
  * author:    zhangkun .
@@ -57,6 +59,15 @@ class MessageFragment : BaseMvpFragment<MessagePresenter>(), MessageView {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_CONTENT
         } else {
             mMultiStateView.viewState = MultiStateView.VIEW_STATE_EMPTY
+        }
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            Bus.send(MessageBadgeEvent(false))
+
+
         }
     }
 }

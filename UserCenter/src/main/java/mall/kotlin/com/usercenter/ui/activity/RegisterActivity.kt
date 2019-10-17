@@ -2,7 +2,6 @@ package mall.kotlin.com.usercenter.ui.activity
 
 import android.view.View
 import kotlinx.android.synthetic.main.activity_register.*
-import mall.kotlin.com.baselibrary.common.AppManager
 import mall.kotlin.com.baselibrary.ext.enable
 import mall.kotlin.com.baselibrary.ui.activity.BaseMvpActivity
 import mall.kotlin.com.usercenter.R
@@ -13,8 +12,6 @@ import mall.kotlin.com.usercenter.presenter.view.RegisterView
 import org.jetbrains.anko.toast
 
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
-    private var pressTime: Long = 0
-
 
     override fun setView(): Int {
         return  R.layout.activity_register
@@ -62,16 +59,6 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
         toast(result)
         finish()
         //startActivity(intentFor<TestActivity>("id" to 5))
-    }
-
-    override fun onBackPressed() {
-        val time = System.currentTimeMillis()
-        if (time - pressTime > 2000) {
-            toast("再按一次退出程序")
-            pressTime = time
-        } else {
-            AppManager.instance.exitApp(this)
-        }
     }
 
     override fun onClick(view: View) {

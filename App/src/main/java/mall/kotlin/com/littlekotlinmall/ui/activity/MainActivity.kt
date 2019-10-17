@@ -6,6 +6,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import kotlinx.android.synthetic.main.activity_main.*
+import mall.kotlin.com.baselibrary.common.AppManager
 import mall.kotlin.com.baselibrary.ui.activity.BaseUIActivity
 import mall.kotlin.com.baselibrary.utils.AppPrefsUtils
 import mall.kotlin.com.goodscenter.common.GoodsConstant
@@ -17,10 +18,12 @@ import mall.kotlin.com.littlekotlinmall.ui.fragment.HomeFragment
 import mall.kotlin.com.littlekotlinmall.ui.fragment.MeFragment
 import mall.kotlin.com.messagecenter.ui.fragment.MessageFragment
 import mall.kotlin.com.provider.event.MessageBadgeEvent
+import org.jetbrains.anko.toast
 import java.util.*
 
 class MainActivity : BaseUIActivity() {
 
+    private var pressTime: Long = 0
 
     //Fragment 栈管理
     private val mStack = Stack<Fragment>()
@@ -117,6 +120,17 @@ class MainActivity : BaseUIActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Bus.unregister(this)
+    }
+
+
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - pressTime > 2000) {
+            toast("再按一次退出程序")
+            pressTime = time
+        } else {
+            AppManager.instance.exitApp(this)
+        }
     }
 
 }

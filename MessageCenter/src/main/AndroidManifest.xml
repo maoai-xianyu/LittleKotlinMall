@@ -30,7 +30,7 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
                 <action android:name="cn.jpush.android.intent.CONNECTION" />
 
-                <category android:name="mall.kotlin.com.littlekotlinmall" />
+                <category android:name="com.kotlin.mall" />
             </intent-filter>
         </receiver>
 

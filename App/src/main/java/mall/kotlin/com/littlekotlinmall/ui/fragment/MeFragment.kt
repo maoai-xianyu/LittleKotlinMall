@@ -18,6 +18,7 @@ import mall.kotlin.com.provider.common.isLogined
 import mall.kotlin.com.usercenter.ui.activity.LoginActivity
 import mall.kotlin.com.usercenter.ui.activity.UserInfoActivity
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 import timber.log.Timber
 
 
@@ -42,6 +43,7 @@ class MeFragment : BaseUIFragment(), View.OnClickListener {
         mWaitPayOrderTv.onClick(this)
         mWaitConfirmOrderTv.onClick(this)
         mCompleteOrderTv.onClick(this)
+        mShareTv.onClick(this)
         mAllOrderTv.onClick(this)
 
     }
@@ -82,7 +84,9 @@ class MeFragment : BaseUIFragment(), View.OnClickListener {
             }
 
             R.id.mAddressTv -> {
-                startActivity<ShipAddressActivity>()
+                afterLogin {
+                    startActivity<ShipAddressActivity>()
+                }
             }
 
 
@@ -97,10 +101,15 @@ class MeFragment : BaseUIFragment(), View.OnClickListener {
                     startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_CONFIRM)
                 }
             }
+
             R.id.mCompleteOrderTv -> {
                 afterLogin {
                     startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_COMPLETED)
                 }
+            }
+
+            R.id.mShareTv -> {
+                toast(R.string.coming_soon_tip)
             }
 
             R.id.mAllOrderTv -> {

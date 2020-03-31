@@ -6,7 +6,7 @@ android {
     compileSdkVersion compile_sdk_version
     buildToolsVersion build_tools_version
     defaultConfig {
-        applicationId "mall.kotlin.com.littlekotlinmall"
+        applicationId "com.kotlin.mall"
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
         versionCode 1
@@ -15,7 +15,7 @@ android {
 
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "397637c5db5512dab4124571", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_APPKEY : "7f3d74ec9161e033d723f585", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
     }

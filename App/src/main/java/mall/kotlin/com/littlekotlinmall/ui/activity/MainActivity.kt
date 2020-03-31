@@ -1,7 +1,7 @@
 package mall.kotlin.com.littlekotlinmall.ui.activity
 
 import android.annotation.SuppressLint
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
@@ -26,7 +26,7 @@ class MainActivity : BaseUIActivity() {
     private var pressTime: Long = 0
 
     //Fragment 栈管理
-    private val mStack = Stack<Fragment>()
+    private val mStack = Stack<androidx.fragment.app.Fragment>()
 
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }

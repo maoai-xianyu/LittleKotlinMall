@@ -1,6 +1,6 @@
 package mall.kotlin.com.goodscenter.ui.activity
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_search_goods.*
 import mall.kotlin.com.baselibrary.BaseApplication.Companion.context
@@ -49,7 +49,7 @@ class SearchGoodsActivity : BaseUIActivity(), View.OnClickListener {
      */
     override fun initView() {
         //RecyclerView适配器
-        mSearchHistoryRv.layoutManager = LinearLayoutManager(this)
+        mSearchHistoryRv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         mSearchHistoryRv.adapter = mAdapter
 
     }

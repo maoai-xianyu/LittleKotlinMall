@@ -1,7 +1,7 @@
 package mall.kotlin.com.littlekotlinmall.ui.adapter
 
 import android.content.Context
-import android.support.v4.view.PagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import mall.kotlin.com.littlekotlinmall.R
  * author:  zhangkun .
  * date:    on 2019/2/21.
  */
-class TopicAdapter(private val context: Context, private val list: List<String>) : PagerAdapter() {
+class TopicAdapter(private val context: Context, private val list: List<String>) : androidx.viewpager.widget.PagerAdapter() {
 
     override fun destroyItem(container: ViewGroup, position: Int, paramObject: Any) {
         container.removeView(paramObject as View)

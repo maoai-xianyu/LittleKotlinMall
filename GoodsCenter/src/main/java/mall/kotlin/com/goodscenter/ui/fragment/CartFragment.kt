@@ -1,7 +1,7 @@
 package mall.kotlin.com.goodscenter.ui.fragment
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
@@ -47,7 +47,7 @@ class CartFragment : BaseMvpFragment<CartListPresenter>(), CartListView {
     }
 
     override fun initView() {
-        mCartGoodsRv.layoutManager = LinearLayoutManager(context) as RecyclerView.LayoutManager?
+        mCartGoodsRv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context) as androidx.recyclerview.widget.RecyclerView.LayoutManager?
         mCartGoodsRv.adapter = cartAdapter
 
         initObserve()

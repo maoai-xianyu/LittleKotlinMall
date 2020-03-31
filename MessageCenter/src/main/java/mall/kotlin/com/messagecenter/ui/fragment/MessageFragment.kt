@@ -1,6 +1,6 @@
 package mall.kotlin.com.messagecenter.ui.fragment
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.eightbitlab.rxbus.Bus
 import com.kennyc.view.MultiStateView
 import kotlinx.android.synthetic.main.fragment_message.*
@@ -29,7 +29,7 @@ class MessageFragment : BaseMvpFragment<MessagePresenter>(), MessageView {
     }
 
     override fun initView() {
-        mMessageRv.layoutManager = LinearLayoutManager(context)
+        mMessageRv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         mAdapter = MessageAdapter(context!!)
         mMessageRv.adapter = mAdapter
 

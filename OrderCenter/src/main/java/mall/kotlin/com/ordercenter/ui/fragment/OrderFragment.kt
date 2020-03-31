@@ -1,7 +1,7 @@
 package mall.kotlin.com.ordercenter.ui.fragment
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
@@ -45,7 +45,7 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), OrderListView {
     }
 
     override fun initView() {
-        mOrderRv.layoutManager = LinearLayoutManager(context)
+        mOrderRv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         orderAdapter = OrderAdapter(context!!)
         mOrderRv.adapter = orderAdapter
     }

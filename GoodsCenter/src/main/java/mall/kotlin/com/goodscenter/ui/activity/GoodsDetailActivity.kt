@@ -1,6 +1,6 @@
 package mall.kotlin.com.goodscenter.ui.activity
 
-import android.support.design.widget.TabLayout
+import com.google.android.material.tabs.TabLayout
 import android.view.Gravity
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus

@@ -1,6 +1,6 @@
 package mall.kotlin.com.littlekotlinmall.ui.fragment
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -74,7 +74,7 @@ class HomeFragment : BaseUIFragment() {
     }
 
     fun initDiscount() {
-        val manager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val manager = androidx.recyclerview.widget.LinearLayoutManager(context, androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL, false)
         mHomeDiscountRv.layoutManager = manager
         val discountAdapter = HomeDiscountAdapter(activity!!)
         mHomeDiscountRv.adapter = discountAdapter

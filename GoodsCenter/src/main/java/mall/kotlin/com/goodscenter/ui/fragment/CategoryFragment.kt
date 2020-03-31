@@ -1,7 +1,7 @@
 package mall.kotlin.com.goodscenter.ui.fragment
 
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kennyc.view.MultiStateView
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_category.*
@@ -40,10 +40,10 @@ class CategoryFragment : BaseMvpFragment<CategoryPresenter>(), CategoryView {
     }
 
     override fun initView() {
-        mTopCategoryRv.layoutManager = LinearLayoutManager(context)
+        mTopCategoryRv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         mTopCategoryRv.adapter = topAdapter
 
-        mSecondCategoryRv.layoutManager = GridLayoutManager(context, 3)
+        mSecondCategoryRv.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 3)
         mSecondCategoryRv.adapter = secondAdapter
 
     }

@@ -1,6 +1,6 @@
 package mall.kotlin.com.ordercenter.ui.activity
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.eightbitlab.rxbus.Bus
@@ -37,7 +37,7 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), ShipAddress
     override fun initView() {
 
         adapter = ShipAddressAdapter(this)
-        mAddressRv.layoutManager = LinearLayoutManager(this)
+        mAddressRv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         mAddressRv.adapter = adapter
 
     }

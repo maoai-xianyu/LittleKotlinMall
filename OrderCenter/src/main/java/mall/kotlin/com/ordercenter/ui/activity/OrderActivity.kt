@@ -1,7 +1,7 @@
 package mall.kotlin.com.ordercenter.ui.activity
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_order.*
 import mall.kotlin.com.baselibrary.ui.activity.BaseUIActivity
 import mall.kotlin.com.ordercenter.R

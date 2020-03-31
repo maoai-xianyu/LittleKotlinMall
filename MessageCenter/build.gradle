@@ -30,7 +30,7 @@ android {
                 JPUSH_APPKEY : "7f3d74ec9161e033d723f585", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 

@@ -1,6 +1,6 @@
 package mall.kotlin.com.goodscenter.ui.activity
 
-import android.support.v7.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout
 import com.kennyc.view.MultiStateView
@@ -37,7 +37,7 @@ class GoodsActivity : BaseMvpActivity<GoodsPresenter>(), GoodsView, BGARefreshLa
     }
 
     override fun initView() {
-        mGoodsRv.layoutManager = GridLayoutManager(context, 2)
+        mGoodsRv.layoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 2)
         mGoodsRv.adapter = goodsAdapter
 
         // 设置上拉加载和下拉刷新

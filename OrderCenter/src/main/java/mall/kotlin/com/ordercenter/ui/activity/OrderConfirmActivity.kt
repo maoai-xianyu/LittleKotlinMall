@@ -2,8 +2,8 @@ package mall.kotlin.com.ordercenter.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -59,7 +59,7 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), OrderConf
 
     override fun initView() {
         // 注册
-        mOrderGoodsRv.layoutManager = LinearLayoutManager(this) as RecyclerView.LayoutManager?
+        mOrderGoodsRv.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this) as androidx.recyclerview.widget.RecyclerView.LayoutManager?
         mOrderGoodsRv.adapter = mAdapter
         initObserve()
     }

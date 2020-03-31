@@ -2,7 +2,7 @@ package mall.kotlin.com.littlekotlinmall.ui.adapter
 
 import android.content.Context
 import android.graphics.Paint
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +29,7 @@ class HomeDiscountAdapter(context: Context) : BaseRecyclerViewAdapter<String, Ho
         holder.itemView.mDiscountBeforeTv.text = "￥1100.00"
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         init {
             view.mDiscountBeforeTv.paint.flags = Paint.STRIKE_THRU_TEXT_FLAG

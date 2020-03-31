@@ -14,6 +14,7 @@ import mall.kotlin.com.littlekotlinmall.ui.adapter.HomeDiscountAdapter
 import mall.kotlin.com.littlekotlinmall.ui.adapter.TopicAdapter
 import me.crosswall.lib.coverflow.CoverFlow
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 
 /**
@@ -36,6 +37,10 @@ class HomeFragment : BaseUIFragment() {
     override fun setListener() {
         mSearchEt.onClick {
             startActivity<SearchGoodsActivity>()
+        }
+
+        mScanIv.onClick {
+            toast(R.string.coming_soon_tip)
         }
 
     }
